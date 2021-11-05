@@ -23,68 +23,7 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 
 ## Commands
 
-### VALORANT
-
-1. valrank `region` `ign with tagline`
-
-Returns player's rank. 
-
-   `region` account's region. Allowed regions: AP, NA, EU, KR (use NA for LATAM and BR)
-
-   `ign with tagline` player's ign with tagline. e.g. MilkChocolate#1011
-
-Example:
-
-   ![example](https://i.ibb.co/D4gGKXh/Screenshot-65.png) 
-
-2. apvalrank `ign with tagline`
-
-   `ign with tagline` APAC player's ign with tagline.
-
-Example:
-
-   ![example](https://i.ibb.co/ftYDGb3/Screenshot-66.png)
-
-3. krvalrank `ign with tagline`
-
-   `ign with tagline` KR player's ign with tagline.
-
-Example:
-
-   ![example](https://i.ibb.co/FwXTnJW/Screenshot-67.png)
-
-4. euvalrank `ign with tagline`
-
-   `ign with tagline` EU player's ign with tagline.
-
-Example:
-
-   ![example](https://i.ibb.co/cQQNCQd/Screenshot-68.png)
-
-5. navalrank `ign with tagline`
-
-   `ign with tagline` NA player's ign with tagline.
-
-Example:
-
-   ![nice](https://i.ibb.co/WzN9V0L/Screenshot-69.png)
-
-
-### Apex Legends
-
-1. apexrank `origin id`
-
-Returns rank for Origin id requested. for PC player.
-   `origin id` player's Origin username. e.g. flyaway1214
-
-Example: 
-   ![example](https://i.ibb.co/pjXcmQ0/Screenshot-70.png)
-
-2. psapexrank `psn id`
-
-Returns rank for PSN id requested. for Playstation player.
-   `psn id` player's Playstation Network name.
-
+See [wiki](https://github.com/gxjakkap/rankbot/wiki).
 
 ## Known bugs
 
