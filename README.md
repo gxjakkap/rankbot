@@ -27,5 +27,4 @@ See [wiki](https://github.com/gxjakkap/rankbot/wiki).
 
 ## Known bugs
 
-- Apex Predator rank does not return rank icon.
 - krvalrank fails to return rank data for players with korean name.
