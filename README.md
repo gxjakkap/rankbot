@@ -19,7 +19,7 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 
 4. Install required modules via `pip install -r requirements.txt`
 
-5. Run your_bot.py
+5. Run bot.py
 
 ## Commands
 
