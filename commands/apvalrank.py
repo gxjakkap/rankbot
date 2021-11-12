@@ -32,9 +32,6 @@ class apvalrank(BaseCommand):
         except:
             pmsg = ans['message']
         msg = ''.join(pmsg)
-        
-        #msg += "\n"+jakkafunct.getrankpic(x['currenttier'])
-        #await message.channel.send(msg)
         await asyncio.gather(
             message.channel.send(msg), 
             message.channel.send(file=discord.File(misc.getrankpic(x['currenttier'])))

@@ -7,15 +7,19 @@ from commands.base_command  import BaseCommand
 
 class apexrank(BaseCommand):
     def __init__(self):
-        description = "Get Apex Legends PC rank for requested player"
-        params = ["origin id"]
+        description = "[Experiment] Get Apex Legends rank for requested player"
+        params = ["platform", "handler"]
         super().__init__(description, params)
     
 
     async def handle(self, params, message, client):
+        platform = params[0]
+        platup = platform.upper()
+        nl = params
+        nl.remove(platform)
+        name = ''.join(nl)
         try:
-            name = params[0]
-            r = requests.get('https://api.mozambiquehe.re/bridge?version=5&platform=PC&player='+name+'&auth='+settings.APEXKEY)
+            r = requests.get('https://api.mozambiquehe.re/bridge?version=5&platform='+platup+'&player='+name+'&auth='+settings.APEXKEY)
             res = r.json()
             if "Error" in res:
                 msg = res['Error']
@@ -25,9 +29,11 @@ class apexrank(BaseCommand):
                 y = x['rank']
                 plyrname = x['name']
                 resp = plyrname,':',y['rankName'],str(y['rankDiv']),str(y['rankScore']),'RP'
-                msg = ' '.join(resp)
+                pmsg = ' '.join(resp)
+                platmes = '**['+platup+']**'
+                tmsg = platmes, pmsg
+                msg = ' '.join(tmsg)
                 await asyncio.gather(message.channel.send(msg), message.channel.send(file=discord.File(misc.getapexrankpic(y['rankName'], y['rankDiv']))))
         except:
             msg = 'Unknown Error'
             await message.channel.send(msg)
-        #await message.channel.send(msg)

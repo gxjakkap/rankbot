@@ -1,7 +1,7 @@
 import asyncio
 from commands.base_command import BaseCommand
 
-class Commands(BaseCommand):
+class help(BaseCommand):
 
     def __init__(self):
         description = "Displays this help message"
