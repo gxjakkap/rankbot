@@ -9,6 +9,8 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 
 ## Installation
 
+*for in depth installation guide, see [wiki](https://github.com/gxjakkap/rankbot/wiki/Installation)*
+
 1. Get Discord bot token from [Discord Developer Portal](https://discord.com/developers/applications) (You should know how to do it by now.)
 
 2. Clone this repository 
