@@ -18,6 +18,8 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 3. Fill details in settings.py
 
    ![Fill details in settings.py](https://i.ibb.co/swH8tSB/Screenshot-64.png)
+   
+4. Install virtualenv and activate it. follow steps [here](https://docs.python-guide.org/dev/virtualenvs/#lower-level-virtualenv).
 
 4. Install required modules via `pip install -r requirements.txt`
 
