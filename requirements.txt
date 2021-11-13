@@ -5,7 +5,6 @@ async-timeout==3.0.1
 chardet==4.0.0
 discord==1.7.3
 discord.py==1.7.3
-emoji==1.6.1
 multidict==5.2.0
 pytz==2021.3
 requests==2.26.0
