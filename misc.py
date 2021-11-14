@@ -1,4 +1,4 @@
-def getrvalrankpic(rank):
+def getvalrankpic(rank):
     rankPic = {
   "3": "img/TX_CompetitiveTier_Large_3.png",
   "4": "img/TX_CompetitiveTier_Large_4.png",
