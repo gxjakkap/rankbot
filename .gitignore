@@ -1,8 +1,9 @@
 
 # Created by https://www.gitignore.io/api/python
 
-#Settings file
+#Rankbot ignore files
 settings.py
+README.md
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
