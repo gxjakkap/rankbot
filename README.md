@@ -28,3 +28,7 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 ## Commands
 
 See [wiki](https://github.com/gxjakkap/rankbot/wiki).
+
+## Credits
+
+[agubelu/discord-bot-template](https://github.com/agubelu/discord-bot-template) : Blank bot template used.
