@@ -28,7 +28,3 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 ## Commands
 
 See [wiki](https://github.com/gxjakkap/rankbot/wiki).
-
-## Known bugs
-
-- krvalrank fails to return rank data for players with korean name.
