@@ -32,7 +32,9 @@ class valrank(BaseCommand):
         try:
             x  = ans['data']
             pmsg = '**[',reg.upper(),']** ',str(x['name']),'#',str(x['tag']),': ',str(x['currenttierpatched']),' ',str(x['ranking_in_tier']),' RP'
+            msg = ''.join(pmsg)
+            await asyncio.gather(message.channel.send(msg), message.channel.send(file=discord.File(misc.getvalrankpic(x['currenttier']))))
         except:
             pmsg = ans['message']
-        msg = ''.join(pmsg)
-        await asyncio.gather(message.channel.send(msg), message.channel.send(file=discord.File(misc.getvalrankpic(x['currenttier']))))
+            await message.channel.send(pmsg)
+        
