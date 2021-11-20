@@ -1,5 +1,4 @@
 import requests
-import asyncio
 import discord
 import misc
 from commands.base_command  import BaseCommand
@@ -31,9 +30,15 @@ class valrank(BaseCommand):
         ans = r.json()
         try:
             x  = ans['data']
-            pmsg = '**[',reg.upper(),']** ',str(x['name']),'#',str(x['tag']),': ',str(x['currenttierpatched']),' ',str(x['ranking_in_tier']),' RP'
-            msg = ''.join(pmsg)
-            await asyncio.gather(message.channel.send(msg), message.channel.send(file=discord.File(misc.getvalrankpic(x['currenttier']))))
+            rankName = x['currenttierpatched']
+            rankPoint = str(x['ranking_in_tier'])+'RP'
+            ingameName = str(x['name'])+'#'+str(x['tag'])
+            msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(147, 181, 198))
+            msg.add_field(name="Name", value=ingameName, inline=False)
+            msg.add_field(name="Rank", value=rankName, inline=False)
+            msg.add_field(name="Rank Point", value=rankPoint, inline=False)
+            msg.set_image(url=misc.getvalrankpic(x['currenttier']))
+            await message.channel.send(embed=msg)
         except:
             pmsg = ans['message']
             await message.channel.send(pmsg)
