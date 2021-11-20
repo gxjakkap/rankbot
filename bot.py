@@ -35,9 +35,21 @@ def main():
 
         # Set the playing status
         if settings.NOW_PLAYING:
-            print("Setting NP game", flush=True)
-            await client.change_presence(
-                activity=discord.Game(name=settings.NOW_PLAYING))
+            if settings.NP_MODE=="STREAM":
+                print("Setting NP as STREAM mode", flush=True)
+                await client.change_presence(activity=discord.Streaming(name=settings.NP_STATUS, url=settings.NP_URL))
+            elif settings.NP_MODE=="LISTEN":
+                print("Setting NP as LISTEN mode", flush=True)
+                await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=settings.NP_STATUS))
+            elif settings.NP_MODE=="WATCH":
+                print("Setting NP as WATCH mode", flush=True)
+                await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=settings.NP_STATUS))
+            elif settings.NP_MODE=="GAME":
+                print("Setting NP as GAME mode", flush=True)
+                await client.change_presence(activity=discord.Game(name=settings.NP_STATUS))
+            else: 
+                print("NP mode not recognized, Setting NP as GAME mode", flush=True)
+                await client.change_presence(activity=discord.Game(name=settings.NP_STATUS))
         print("Logged in!", flush=True)
 
     # The message handler for both new message and edits
