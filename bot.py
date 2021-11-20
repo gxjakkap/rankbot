@@ -34,7 +34,7 @@ def main():
         this.running = True
 
         # Set the playing status
-        if settings.NOW_PLAYING:
+        if settings.NP_STATUS:
             if settings.NP_MODE=="STREAM":
                 print("Setting NP as STREAM mode", flush=True)
                 await client.change_presence(activity=discord.Streaming(name=settings.NP_STATUS, url=settings.NP_URL))
