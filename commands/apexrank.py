@@ -40,7 +40,10 @@ class apexrank(BaseCommand):
                 msg.add_field(name="Rank", value=rank, inline=False)
                 msg.add_field(name="Rank Point", value=rankScore, inline=False)
                 msg.set_image(url=misc.getapexrankpic(rankName, rankDiv))
-                await message.channel.send(embed=msg)
+                await asyncio.gather(
+                message.channel.send(message.author.mention + "\n"),
+                message.channel.send(embed=msg)
+            )
         except:
             msg = 'Unknown Error'
             await message.channel.send(msg)

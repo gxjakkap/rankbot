@@ -1,6 +1,7 @@
 import requests
 import discord
 import misc
+import asyncio
 from commands.base_command  import BaseCommand
 
 class valrank(BaseCommand):
@@ -38,7 +39,10 @@ class valrank(BaseCommand):
             msg.add_field(name="Rank", value=rankName, inline=False)
             msg.add_field(name="Rank Point", value=rankPoint, inline=False)
             msg.set_image(url=misc.getvalrankpic(x['currenttier']))
-            await message.channel.send(embed=msg)
+            await asyncio.gather(
+                message.channel.send(message.author.mention + "\n"),
+                message.channel.send(embed=msg)
+            )
         except:
             pmsg = ans['message']
             await message.channel.send(pmsg)
