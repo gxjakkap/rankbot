@@ -2,6 +2,9 @@
 
 Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [mozambiquehe.re](https://apexlegendsapi.com/) and [henrikdev.xyz](https://docs.henrikdev.xyz/valorant.html) API.
 
+## Invite link
+https://guntxjakka.me/rankbot
+
 ## Requirements
 1. Python 3
 
