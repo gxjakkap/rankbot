@@ -7,7 +7,7 @@ from commands.base_command  import BaseCommand
 
 class legapexrank(BaseCommand):
     def __init__(self):
-        description = "Get Apex Legends rank for requested player"
+        description = "**[Legacy]** Get Apex Legends rank for requested player"
         params = ["platform", "handler"]
         super().__init__(description, params)
     

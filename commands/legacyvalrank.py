@@ -6,7 +6,7 @@ from commands.base_command  import BaseCommand
 
 class legvalrank(BaseCommand):
     def __init__(self):
-        description = "Get VALORANT rank for requested player. Specify regions in first parameter: AP, NA, KR, EU."
+        description = "**[Legacy]** Get VALORANT rank for requested player. Specify regions in first parameter: AP, NA, KR, EU."
         params = ["region", "ign with tagline"]
         super().__init__(description, params)
 
