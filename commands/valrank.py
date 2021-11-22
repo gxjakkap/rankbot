@@ -21,7 +21,10 @@ class valrank(BaseCommand):
         for i in range(length):
             if l[i] == ' ':
                  l[i] = '%20'
-        ind = l.index('#')
+        try:
+            ind = l.index('#')
+        except:
+            await message.channel.send("Tagline missing *(e.g. MilkChocolate#1011)*")
         ignl = l[:ind]
         tagl = l[ind+1:]
         ign = ''.join(ignl)
