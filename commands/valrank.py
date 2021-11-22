@@ -24,7 +24,7 @@ class valrank(BaseCommand):
         try:
             ind = l.index('#')
         except:
-            await message.channel.send("Tagline missing *(e.g. MilkChocolate#1011)*")
+            await message.channel.send("Tagline missing")
         ignl = l[:ind]
         tagl = l[ind+1:]
         ign = ''.join(ignl)
