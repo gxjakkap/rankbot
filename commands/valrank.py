@@ -14,7 +14,7 @@ class valrank(BaseCommand):
         reg = params[0]
         ntl = params
         ntl.remove(reg)
-        nt = ''.join(ntl)
+        nt = ' '.join(ntl)
         l = misc.spl(nt)
         length = len(l)
         i = 0
