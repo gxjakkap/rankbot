@@ -31,7 +31,10 @@ class valrank(BaseCommand):
         tag = ''.join(tagl)
         r = requests.get('https://api.henrikdev.xyz/valorant/v1/mmr/'+reg+'/'+ign+'/'+tag)
         r.encoding = 'utf-8'
-        ans = r.json()
+        try:
+            ans = r.json()
+        except:
+            await message.channel.send('JSON Decode error')
         try:
             x  = ans['data']
             rankName = x['currenttierpatched']
