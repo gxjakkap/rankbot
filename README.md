@@ -18,9 +18,9 @@ https://guntxjakka.me/rankbot
 
 2. Clone this repository 
 
-3. Fill details in settings.py
+3. Fill details in settings-example.py and rename it to settings.py
 
-   ![Fill details in settings.py](https://i.ibb.co/swH8tSB/Screenshot-64.png)
+   ![Fill details in settings.py](https://i.ibb.co/5LCTjbR/Screenshot-101.png)
    
 4. Install virtualenv and activate it. follow steps [here](https://docs.python-guide.org/dev/virtualenvs/#lower-level-virtualenv).
 
