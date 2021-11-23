@@ -49,13 +49,14 @@ def getapexrankpic(rankname, rankdiv):
   "diamond2": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/diamond2.png",
   "diamond3": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/diamond3.png",
   "diamond4": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/diamond4.png",
-  "master": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/master.png"
+  "master1": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/master.png",
+  "apexpredator0": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/apexpred.png"
     }
     try:
         ans = dict[x]
         return ans
     except:
-        return 'https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/apexpred.png'
+        return "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"
 
 def spl(x):
     return [char for char in x]
