@@ -28,6 +28,7 @@ def getvalrankpic(rank):
 
 def getapexrankpic(rankname, rankdiv):
     x = str(rankname.lower()+str(rankdiv))
+    y = x.replace(" ", "")
     dict = {
   "bronze1": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/bronze1.png",
   "bronze2": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/bronze2.png",
@@ -52,11 +53,13 @@ def getapexrankpic(rankname, rankdiv):
   "master1": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/master.png",
   "apexpredator0": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/apexpred.png"
     }
-    try:
-        ans = dict[x]
+    '''try:
+        ans = dict[y]
         return ans
     except:
-        return "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"
+        return "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"'''
+    ans = dict[y]
+    return ans
 
 def spl(x):
     return [char for char in x]
