@@ -34,7 +34,7 @@ class valrank(BaseCommand):
         try:
             ans = r.json()
         except:
-            await message.channel.send('JSON Decode error')
+            await asyncio.gather(message.channel.send(message.author.mention+"\n"+'JSON Decode error'))
         try:
             x  = ans['data']
             rankName = x['currenttierpatched']
@@ -51,5 +51,5 @@ class valrank(BaseCommand):
             )
         except:
             pmsg = ans['message']
-            await message.channel.send(pmsg)
+            await message.channel.send(message.author.mention+"\n"+pmsg)
         
