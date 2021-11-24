@@ -24,12 +24,16 @@ def getvalrankpic(rank):
   "24": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/TX_CompetitiveTier_Large_24.png"
     }
     rank = str(rank)
-    return rankPic[rank]
+    try:
+        ans = rankPic[rank]
+        return ans
+    except:
+        return "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"
 
 def getapexrankpic(rankname, rankdiv):
     x = str(rankname.lower()+str(rankdiv))
     y = x.replace(" ", "")
-    dict = {
+    rankPic = {
   "bronze1": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/bronze1.png",
   "bronze2": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/bronze2.png",
   "bronze3": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/bronze3.png",
@@ -53,13 +57,49 @@ def getapexrankpic(rankname, rankdiv):
   "master1": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/master.png",
   "apexpredator0": "https://cdn.statically.io/gh/gxjakkap/rankbot-img/main/img/apexpred.png"
     }
-    '''try:
-        ans = dict[y]
+    try:
+        ans = rankPic[y]
         return ans
     except:
-        return "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"'''
-    ans = dict[y]
-    return ans
+        return "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"
 
 def spl(x):
     return [char for char in x]
+
+def getvalrankcolor(rank):
+    if rank<=5: #iron
+        return [55, 56, 56]
+    elif rank<=8: #bronze
+        return [144, 113, 73]
+    elif rank<=11: #silver
+        return [149, 160, 172]
+    elif rank<=14: #gold
+        return [215, 137, 40]
+    elif rank<=17: #plat
+        return [52, 143, 157]
+    elif rank<=20: #diamond
+        return [195, 111, 215]
+    elif rank<=23: #immortal
+        return [190, 50, 77]
+    elif rank==24: #radiant
+        return [244, 237, 181]
+    else: #default color
+        return [147, 181, 198]
+
+def getapexrankcolor(rank):
+    if rank=="Bronze":
+        return [113,75,51]
+    elif rank=="Silver":
+        return [107,106,108]
+    elif rank=="Gold":
+        return [154,123,67]
+    elif rank=="Platinum":
+        return [111,187,205]
+    elif rank=="Diamond":
+        return [88,147,193]
+    elif rank=="Master":
+        return [157,102,209]
+    elif rank=="Apex Predator":
+        return [152, 0, 0]
+    else: #default color
+        return [147, 181, 198]

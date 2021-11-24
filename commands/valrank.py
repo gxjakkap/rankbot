@@ -24,7 +24,7 @@ class valrank(BaseCommand):
         try:
             ind = l.index('#')
         except:
-            await message.channel.send("Tagline missing")
+            await message.channel.send(message.author.mention+"\n"+"Tagline missing")
         ignl = l[:ind]
         tagl = l[ind+1:]
         ign = ''.join(ignl)
@@ -34,13 +34,14 @@ class valrank(BaseCommand):
         try:
             ans = r.json()
         except:
-            await asyncio.gather(message.channel.send(message.author.mention+"\n"+'JSON Decode error'))
+            await message.channel.send(message.author.mention+"\n"+'JSON Decode error')
         try:
             x  = ans['data']
             rankName = x['currenttierpatched']
             rankPoint = str(x['ranking_in_tier'])+'RP'
             ingameName = str(x['name'])+'#'+str(x['tag'])
-            msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(147, 181, 198))
+            rankColor = misc.getvalrankcolor(x['currenttier'])
+            msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
             msg.add_field(name="Name", value=ingameName, inline=False)
             msg.add_field(name="Rank", value=rankName, inline=False)
             msg.add_field(name="Rank Point", value=rankPoint, inline=False)
@@ -50,6 +51,5 @@ class valrank(BaseCommand):
                 message.channel.send(embed=msg)
             )
         except:
-            pmsg = ans['message']
-            await message.channel.send(message.author.mention+"\n"+pmsg)
+            await message.channel.send(message.author.mention+"\n"+ans['message'])
         

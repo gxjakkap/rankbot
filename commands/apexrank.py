@@ -22,8 +22,7 @@ class apexrank(BaseCommand):
             r = requests.get('https://api.mozambiquehe.re/bridge?version=5&platform='+platup+'&player='+name+'&auth='+settings.APEXKEY)
             res = r.json()
             if "Error" in res:
-                msg = res['Error']
-                await message.channel.send(msg)
+                await message.channel.send(message.author.mention, res['Error'])
             else:
                 x = res['global']
                 y = x['rank']
@@ -42,15 +41,13 @@ class apexrank(BaseCommand):
                 else: #Apex Predator will also display rankName without rankDiv
                     rank = rankName
                 rankScore = str(y['rankScore'])
-                msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(147, 181, 198))
+                rankColor = misc.getapexrankcolor(rankName)
+                msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
                 msg.add_field(name="Name", value=namedisplay, inline=False)
                 msg.add_field(name="Platform", value=platup, inline=False)
                 msg.add_field(name="Rank", value=rank, inline=False)
                 msg.add_field(name="Rank Point", value=rankScore, inline=False)
                 msg.set_image(url=misc.getapexrankpic(rankName, rankDiv))
-                await asyncio.gather(
-                message.channel.send(message.author.mention + "\n"),
-                message.channel.send(embed=msg)
-            )
+                await asyncio.gather(message.channel.send(message.author.mention + "\n"),message.channel.send(embed=msg))
         except:
             await message.channel.send(message.author.mention+"\n"+'Unknown Error')
