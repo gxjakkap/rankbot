@@ -1,3 +1,4 @@
+import datetime as dt
 from commands.base_command  import BaseCommand
 
 # This, in addition to tweaking __all__ on commands/__init__.py, 
@@ -20,7 +21,10 @@ async def handle_command(command, args, message, bot_client):
     if command not in COMMAND_HANDLERS:
         return
 
-    print(f"{message.author.name}: {settings.COMMAND_PREFIX}{command} " 
+    now = dt.datetime.now()
+    timest = now.strftime("%c")
+
+    print(f"[{timest}] {message.author.name}: {settings.COMMAND_PREFIX}{command} " 
           + " ".join(args))
 
     # Retrieve the command

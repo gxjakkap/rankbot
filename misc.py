@@ -103,3 +103,9 @@ def getapexrankcolor(rank):
         return [152, 0, 0]
     else: #default color
         return [147, 181, 198]
+
+def getprefix(gid):
+    with open ('prefix.json', 'r') as f:
+        import json
+        prefix = json.load(f)
+    return prefix[str(gid)]

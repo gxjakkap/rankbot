@@ -19,7 +19,7 @@ class apexrank(BaseCommand):
         nl.remove(platform)
         name = ''.join(nl)
         try:
-            r = requests.get('https://api.mozambiquehe.re/bridge?version=5&platform='+platup+'&player='+name+'&auth='+settings.APEXKEY)
+            r = requests.get(f'https://api.mozambiquehe.re/bridge?version=5&platform={platup}&player={name}', headers={"Authorization": settings.APEXKEY})
             res = r.json()
             if "Error" in res:
                 await message.channel.send(message.author.mention, res['Error'])

@@ -4,6 +4,7 @@
 #Rankbot ignore files
 settings.py
 README.md
+prefix.json
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

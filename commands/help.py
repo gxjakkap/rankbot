@@ -1,7 +1,6 @@
-import asyncio
 from commands.base_command import BaseCommand
 
-class help(BaseCommand):
+class Commands(BaseCommand):
 
     def __init__(self):
         description = "Displays this help message"
@@ -19,7 +18,4 @@ class help(BaseCommand):
         msg = '>>> {}'.format(pmsg)
 
         #await message.channel.send(msg)
-        await asyncio.gather(
-            message.channel.send(message.author.mention + "\n"),
-            message.channel.send(msg)
-        )
+        await message.channel.send(message.author.mention + "\n" + msg),
