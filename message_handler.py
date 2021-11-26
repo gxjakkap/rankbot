@@ -24,7 +24,7 @@ async def handle_command(command, args, message, bot_client):
     now = dt.datetime.now()
     timest = now.strftime("%c")
 
-    print(f"[{timest}] {message.author.name}: {settings.COMMAND_PREFIX}{command} " 
+    print(f"[{timest}] [{message.guild.name}] {message.author.name}: {command} " 
           + " ".join(args))
 
     # Retrieve the command

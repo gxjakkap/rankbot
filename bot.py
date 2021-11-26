@@ -67,15 +67,21 @@ def main():
                 raise
 
     @client.event
-    async def on_guild_join(guild): 
+    async def on_guild_join(guild):
+        print(f"Added to {guild.name} ({guild.id})")
+        defaultChannel = guild.system_channel
+        if defaultChannel != "None":
+            await defaultChannel.send(f"Hi!, My name is Rankbot. My default prefix is `{settings.COMMAND_PREFIX}` .\nTo change my prefix, use `{settings.COMMAND_PREFIX}prefix change <new prefix>`. To get help, use `{settings.COMMAND_PREFIX}help`.")
         with open('prefix.json', 'r') as f: 
             prefixes = json.load(f) 
         prefixes[str(guild.id)] = settings.COMMAND_PREFIX
         with open('prefix.json', 'w') as f: 
-            json.dump(prefixes, f, indent=4) 
+            json.dump(prefixes, f, indent=4)
+        
 
     @client.event
     async def on_guild_remove(guild): 
+        print(f"Removed from {guild.name} ({guild.id})")
         with open('prefix.json', 'r') as f: 
             prefixes = json.load(f)
         prefixes.pop(str(guild.id))
