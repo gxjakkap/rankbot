@@ -46,6 +46,7 @@ class valrank(BaseCommand):
             msg.add_field(name="Rank", value=rankName, inline=False)
             msg.add_field(name="Rank Point", value=rankPoint, inline=False)
             msg.set_image(url=misc.getvalrankpic(x['currenttier']))
+            msg.set_footer(text="Data provided by henrikdev.xyz")
             await asyncio.gather(
                 message.channel.send(message.author.mention + "\n"),
                 message.channel.send(embed=msg)

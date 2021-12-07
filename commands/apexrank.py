@@ -42,7 +42,8 @@ class apexrank(BaseCommand):
                     rank = rankName
                 rankScore = str(y['rankScore'])
                 rankColor = misc.getapexrankcolor(rankName)
-                msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
+                msg = discord.Embed(Title="Results",  color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
+                msg.set_thumbnail(url=misc.getapexplatpic(platform))
                 msg.add_field(name="Name", value=namedisplay, inline=False)
                 msg.add_field(name="Platform", value=platup, inline=False)
                 msg.add_field(name="Rank", value=rank, inline=False)
