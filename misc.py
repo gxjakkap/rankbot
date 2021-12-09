@@ -34,6 +34,7 @@ def getapexrankpic(rankname, rankdiv):
     x = str(rankname.lower()+str(rankdiv))
     y = x.replace(" ", "")
     rankPic = {
+    "unranked4": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/apex/unranked4.png",
   "bronze1": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/apex/bronze1.png",
   "bronze2": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/apex/bronze2.png",
   "bronze3": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/apex/bronze3.png",
