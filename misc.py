@@ -68,7 +68,7 @@ def getapexplatpic(plat):
     x = str(plat.lower())
     platPic = {
   "pc": "https://cdn.statically.io/img/raw.githubusercontent.com/w=30,h=30/gxjakkap/rankbot-img/main/img/apex/windows.png",
-  "x1": "https://cdn.statically.io/img/raw.githubusercontent.com/w=30,h=30/gxjakkap/rankbot-img/main/img/apex/master.png",
+  "x1": "https://cdn.statically.io/img/raw.githubusercontent.com/w=30,h=30/gxjakkap/rankbot-img/main/img/apex/xbox.png",
   "ps4": "https://cdn.statically.io/img/raw.githubusercontent.com/w=30,h=30/gxjakkap/rankbot-img/main/img/apex/playstation.png"
     }
     try:
