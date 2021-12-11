@@ -42,9 +42,11 @@ class valrank(BaseCommand):
             ingameName = str(x['name'])+'#'+str(x['tag'])
             rankColor = misc.getvalrankcolor(x['currenttier'])
             msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
+            msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
             msg.add_field(name="Name", value=ingameName, inline=False)
-            msg.add_field(name="Rank", value=rankName, inline=False)
-            msg.add_field(name="Rank Point", value=rankPoint, inline=False)
+            msg.add_field(name="Region", value=reg.upper(), inline=False)
+            msg.add_field(name="Rank", value=rankName, inline=True)
+            msg.add_field(name="Rank Point", value=rankPoint, inline=True)
             msg.set_image(url=misc.getvalrankpic(x['currenttier']))
             msg.set_footer(text="Data provided by henrikdev.xyz")
             await asyncio.gather(
