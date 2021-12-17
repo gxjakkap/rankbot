@@ -34,7 +34,10 @@ class valrank(BaseCommand):
         try:
             ans = r.json()
         except:
-            await message.channel.send(message.author.mention+"\n"+'JSON Decode error')
+            if r.status_code==204:
+                 await message.channel.send(message.author.mention+"\n"+"This Player either never played competitive or haven't played competitive in a while. (API returns no content/204)")
+            else:
+                await message.channel.send(message.author.mention+"\n"+"There's an error decoding JSON response. Please try again later.")
         try:
             x  = ans['data']
             rankName = x['currenttierpatched']
