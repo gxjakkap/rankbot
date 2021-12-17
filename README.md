@@ -6,7 +6,7 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 https://guntxjakka.me/rankbot
 
 ## Requirements
-1. Python 3.10 (IMPORTANT: for version compatible with Python 3.9 please check out branch [py3.9](https://github.com/gxjakkap/rankbot/tree/py3.9). code in the main branch ONLY works with Python 3.10 as it require new syntax introduced in Python 3.10)
+1. Python 3.9
 
 2. Modules listed in requirements.txt 
 
