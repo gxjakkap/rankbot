@@ -123,3 +123,35 @@ def getprefix(gid):
         import json
         prefix = json.load(f)
     return prefix[str(gid)]
+
+def getvalmapname(x):
+    dict = {
+  "/Game/Maps/Ascent/Ascent": "Ascent",
+  "/Game/Maps/Foxtrot/Foxtrot": "Breeze",
+  "/Game/Maps/Bonsai/Bonsai": "Split",
+  "/Game/Maps/Duality/Duality": "Bind",
+  "/Game/Maps/Triad/Triad": "Haven",
+  "/Game/Maps/Port/Port": "Icebox",
+  "/Game/Maps/Canyon/Canyon": "Fracture"
+    }   
+    try:
+        reply = dict[x]
+    except:
+        reply = x
+    return reply
+
+def getvalmappic(x):
+    dict = {
+  "/Game/Maps/Ascent/Ascent": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Ascent.png",
+  "/Game/Maps/Foxtrot/Foxtrot": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Breeze.png",
+  "/Game/Maps/Bonsai/Bonsai": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Split.png",
+  "/Game/Maps/Duality/Duality": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Bind.png",
+  "/Game/Maps/Triad/Triad": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Haven.png",
+  "/Game/Maps/Port/Port": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Icebox.png",
+  "/Game/Maps/Canyon/Canyon": "https://cdn.statically.io/img/raw.githubusercontent.com/w=300/gxjakkap/rankbot-img/main/img/val/maps/Fracture.png"
+    }
+    try:
+        reply = dict[x]
+    except:
+        reply = "https://cdn.statically.io/og/theme=dark/404%20Not%20Found.jpg"
+    return reply
