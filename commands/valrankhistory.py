@@ -47,7 +47,7 @@ class valrankhis(BaseCommand):
         postans = r2.json()
         diff = postans['Matches'][0]['RankedRatingEarned']
         map = postans['Matches'][0]['MapID']
-        r3 = requests.get(f'http://v2-api.henrikdev.xyz/valorant/v2/match/{postans['Matches'][0]['MatchID']}')
+        r3 = requests.get('http://v2-api.henrikdev.xyz/valorant/v2/match/'+postans['Matches'][0]['MatchID'])
         r3ans = r3.json()
         matchresults = str(r3ans['data']['teams']['red']['rounds_won'])+' - '+str(r3ans['data']['teams']['blue']['rounds_won'])
         if postans['Matches'][0]['TierAfterUpdate'] > postans['Matches'][0]['TierBeforeUpdate']:
