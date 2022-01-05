@@ -1,6 +1,6 @@
 import sys
 import settings
-import discord
+import nextcord
 import message_handler
 import misc
 import json
@@ -22,7 +22,7 @@ sched = AsyncIOScheduler()
 def main():
     # Initialize the client
     print("Starting up...")
-    client = discord.Client()
+    client = nextcord.Client()
 
     # Define event handlers for the client
     # on_ready may be called multiple times in the event of a reconnect,
@@ -38,19 +38,19 @@ def main():
         if settings.NP_STATUS:
             if settings.NP_MODE=="STREAM":
                 print("Setting NP as STREAM mode", flush=True)
-                await client.change_presence(activity=discord.Streaming(name=settings.NP_STATUS, url=settings.NP_URL))
+                await client.change_presence(activity=nextcord.Streaming(name=settings.NP_STATUS, url=settings.NP_URL))
             elif settings.NP_MODE=="LISTEN":
                 print("Setting NP as LISTEN mode", flush=True)
-                await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=settings.NP_STATUS))
+                await client.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.listening, name=settings.NP_STATUS))
             elif settings.NP_MODE=="WATCH":
                 print("Setting NP as WATCH mode", flush=True)
-                await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=settings.NP_STATUS))
+                await client.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.watching, name=settings.NP_STATUS))
             elif settings.NP_MODE=="GAME":
                 print("Setting NP as GAME mode", flush=True)
-                await client.change_presence(activity=discord.Game(name=settings.NP_STATUS))
+                await client.change_presence(activity=nextcord.Game(name=settings.NP_STATUS))
             else: 
                 print("NP mode not recognized, Setting NP as GAME mode", flush=True)
-                await client.change_presence(activity=discord.Game(name=settings.NP_STATUS))
+                await client.change_presence(activity=nextcord.Game(name=settings.NP_STATUS))
 
         print("Logged in!", flush=True)
 

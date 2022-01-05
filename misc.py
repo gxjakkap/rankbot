@@ -1,5 +1,6 @@
 def getvalrankpic(rank):
     rankPic = {
+  "0": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/val/TX_CompetitiveTier_Large_0.png",
   "3": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/val/TX_CompetitiveTier_Large_3.png",
   "4": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/val/TX_CompetitiveTier_Large_4.png",
   "5": "https://cdn.statically.io/img/raw.githubusercontent.com/w=120,h=120/gxjakkap/rankbot-img/main/img/val/TX_CompetitiveTier_Large_5.png",

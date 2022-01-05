@@ -1,4 +1,4 @@
-import discord
+import nextcord
 import asyncio
 from commands.base_command import BaseCommand
 
@@ -20,7 +20,7 @@ class help(BaseCommand):
 
         #msg = '>>> {}'.format(pmsg)
         msg = pmsg+"\nMore help at https://github.com/gxjakkap/rankbot/wiki"
-        embed = discord.Embed(Title="Help", color=discord.Color.from_rgb(147, 181, 198))
+        embed = nextcord.Embed(Title="Help", color=nextcord.Color.from_rgb(147, 181, 198))
         embed.add_field(name="Commands", value=msg)
 
         #await message.channel.send(msg)

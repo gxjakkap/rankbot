@@ -1,5 +1,5 @@
 import requests
-import discord
+import nextcord
 import misc
 import asyncio
 from commands.base_command  import BaseCommand
@@ -29,7 +29,7 @@ class valrankhis(BaseCommand):
         tagl = l[ind+1:]
         ign = ''.join(ignl)
         tag = ''.join(tagl)
-        r = requests.get('https://api.henrikdev.xyz/valorant/v1/account/'+ign+'/'+tag)
+        r = requests.get(f'https://v2-api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
         r.encoding = 'utf-8'
         try:
             ans = r.json()
@@ -43,11 +43,11 @@ class valrankhis(BaseCommand):
         except:
             await message.channel.send(ans['message'])
         body = {"type": "competitiveupdates","value": x['puuid'],"region": reg,"queries": "?queue=competitive"}
-        r2 = requests.post('https://api.henrikdev.xyz/valorant/v1/raw', json = body)
+        r2 = requests.post('https://v2-api.henrikdev.xyz/valorant/v1/raw', json = body)
         postans = r2.json()
         diff = postans['Matches'][0]['RankedRatingEarned']
         map = postans['Matches'][0]['MapID']
-        r3 = requests.get('http://api.henrikdev.xyz/valorant/v2/match/'+postans['Matches'][0]['MatchID'])
+        r3 = requests.get(f'http://v2-api.henrikdev.xyz/valorant/v2/match/{postans['Matches'][0]['MatchID']}')
         r3ans = r3.json()
         matchresults = str(r3ans['data']['teams']['red']['rounds_won'])+' - '+str(r3ans['data']['teams']['blue']['rounds_won'])
         if postans['Matches'][0]['TierAfterUpdate'] > postans['Matches'][0]['TierBeforeUpdate']:
@@ -75,7 +75,7 @@ class valrankhis(BaseCommand):
             status = str(diff)+' Demoted'
             wl = 'Lose'
             color = [237,92,89]
-        msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(color[0], color[1], color[2]))
+        msg = nextcord.Embed(Title="Results", color=nextcord.Color.from_rgb(color[0], color[1], color[2]))
         msg.set_author(name=x['name']+"'s latest competitive match", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
         msg.add_field(name="Map", value=misc.getvalmapname(map))
         msg.add_field(name="Results (Red-Blue)", value=matchresults)

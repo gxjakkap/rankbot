@@ -1,5 +1,5 @@
 import requests
-import discord
+import nextcord
 import misc
 import asyncio
 from commands.base_command  import BaseCommand
@@ -29,13 +29,27 @@ class valrank(BaseCommand):
         tagl = l[ind+1:]
         ign = ''.join(ignl)
         tag = ''.join(tagl)
-        r = requests.get('https://api.henrikdev.xyz/valorant/v1/mmr/'+reg+'/'+ign+'/'+tag)
+        r = requests.get(f'https://v2-api.henrikdev.xyz/valorant/v1/mmr/{reg}/{ign}/{tag}')
         r.encoding = 'utf-8'
         try:
             ans = r.json()
         except:
             if r.status_code==204:
-                 await message.channel.send(message.author.mention+"\n"+"This Player either never played competitive or haven't played competitive in a while. (API returns no content/204)")
+                r = requests.get(f'https://v2-api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
+                r.encoding = 'utf-8'
+                ans = r.json()
+                ingameName = ans['data']['name']+'#'+ans['data']['tag']
+                msg = nextcord.Embed(color=nextcord.Color.from_rgb(110,114,118))
+                msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
+                msg.add_field(name="Name", value=ingameName, inline=False)
+                msg.add_field(name="Region", value=reg.upper(), inline=False)
+                msg.add_field(name="Rank", value="Unranked", inline=False)
+                msg.set_image(url=misc.getvalrankpic(0))
+                msg.set_footer(text="Data provided by henrikdev.xyz")
+                await asyncio.gather(
+                    message.channel.send(message.author.mention + "\n"),
+                    message.channel.send(embed=msg)
+                )
             else:
                 await message.channel.send(message.author.mention+"\n"+"There's an error decoding JSON response. Please try again later.")
         try:
@@ -44,7 +58,7 @@ class valrank(BaseCommand):
             rankPoint = str(x['ranking_in_tier'])+'RP'
             ingameName = str(x['name'])+'#'+str(x['tag'])
             rankColor = misc.getvalrankcolor(x['currenttier'])
-            msg = discord.Embed(Title="Results", color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
+            msg = nextcord.Embed(color=nextcord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
             msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
             msg.add_field(name="Name", value=ingameName, inline=False)
             msg.add_field(name="Region", value=reg.upper(), inline=False)

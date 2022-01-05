@@ -1,6 +1,6 @@
 import requests
 import asyncio
-import discord
+import nextcord
 import misc
 import settings
 from commands.base_command  import BaseCommand
@@ -44,7 +44,7 @@ class apexarena(BaseCommand):
                     rank = rankName
                 rankScore = str(y['rankScore'])
                 rankColor = misc.getapexrankcolor(rankName)
-                msg = discord.Embed(Title="Results",  color=discord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
+                msg = nextcord.Embed(Title="Results",  color=nextcord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
                 msg.set_author(name="Apex Legends Ranked Arena", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/apex.png")
                 msg.set_thumbnail(url=misc.getapexplatpic(platform))
                 msg.add_field(name="Name", value=namedisplay, inline=False)
