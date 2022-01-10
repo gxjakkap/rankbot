@@ -35,3 +35,7 @@ See [wiki](https://github.com/gxjakkap/rankbot/wiki).
 ## Credits
 
 [agubelu/discord-bot-template](https://github.com/agubelu/discord-bot-template) : Blank bot template used.
+
+## License
+
+[GNU General Public License v3.0](https://github.com/gxjakkap/rankbot/blob/main/LICENSE)
