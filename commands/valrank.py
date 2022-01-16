@@ -71,5 +71,8 @@ class valrank(BaseCommand):
                 message.channel.send(embed=msg)
             )
         except:
-            await message.channel.send(message.author.mention+"\n"+ans['message'])
+            if r.status_code==429 and ans['message']=="Riot Origin Server Rate Limit, try again later":
+                await message.channel.send(message.author.mention+"\nRate Limit Error: Requested player likely changed their Riot ID recently. Try again later or try querying their old name.")
+            else:
+                await message.channel.send(message.author.mention+"\n"+ans['message'])
         
