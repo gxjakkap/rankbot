@@ -41,10 +41,10 @@ class valrank(BaseCommand):
             if rankName==None:
                 msg = nextcord.Embed(color=nextcord.Color.from_rgb(110,113,118))
                 msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
-                msg.add_field(name="Name", value=ingameName, inline=False)
+                msg.add_field(name="Name", value=f'{ign}#{tag}', inline=False)
                 msg.add_field(name="Region", value=reg.upper(), inline=False)
-                msg.add_field(name="Rank", value=rankName, inline=True)
-                msg.add_field(name="Rank Point", value=rankPoint, inline=True)
+                msg.add_field(name="Rank", value="Unranked", inline=True)
+                msg.add_field(name="Rank Point", value="None", inline=True)
                 msg.set_image(url=misc.getvalrankpic(0))
                 msg.set_footer(text="Data provided by henrikdev.xyz")
                 await asyncio.gather(
