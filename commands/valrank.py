@@ -34,27 +34,23 @@ class valrank(BaseCommand):
         try:
             ans = r.json()
         except:
-            if r.status_code==204:
-                r = requests.get(f'https://api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
-                r.encoding = 'utf-8'
-                ans = r.json()
-                ingameName = ans['data']['name']+'#'+ans['data']['tag']
-                msg = nextcord.Embed(color=nextcord.Color.from_rgb(110,114,118))
+            await message.channel.send(message.author.mention+"\n"+"There's an error decoding JSON response. Please try again later.")
+        try:
+            x  = ans['data']
+            rankName = x['currenttierpatched']
+            if rankName==None:
+                msg = nextcord.Embed(color=nextcord.Color.from_rgb(110,113,118))
                 msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
                 msg.add_field(name="Name", value=ingameName, inline=False)
                 msg.add_field(name="Region", value=reg.upper(), inline=False)
-                msg.add_field(name="Rank", value="Unranked", inline=False)
+                msg.add_field(name="Rank", value=rankName, inline=True)
+                msg.add_field(name="Rank Point", value=rankPoint, inline=True)
                 msg.set_image(url=misc.getvalrankpic(0))
                 msg.set_footer(text="Data provided by henrikdev.xyz")
                 await asyncio.gather(
                     message.channel.send(message.author.mention + "\n"),
                     message.channel.send(embed=msg)
                 )
-            else:
-                await message.channel.send(message.author.mention+"\n"+"There's an error decoding JSON response. Please try again later.")
-        try:
-            x  = ans['data']
-            rankName = x['currenttierpatched']
             rankPoint = str(x['ranking_in_tier'])+'RP'
             ingameName = str(x['name'])+'#'+str(x['tag'])
             rankColor = misc.getvalrankcolor(x['currenttier'])
