@@ -29,13 +29,13 @@ class valrank(BaseCommand):
         tagl = l[ind+1:]
         ign = ''.join(ignl)
         tag = ''.join(tagl)
-        r = requests.get(f'https://v2-api.henrikdev.xyz/valorant/v1/mmr/{reg}/{ign}/{tag}')
+        r = requests.get(f'https://api.henrikdev.xyz/valorant/v1/mmr/{reg}/{ign}/{tag}')
         r.encoding = 'utf-8'
         try:
             ans = r.json()
         except:
             if r.status_code==204:
-                r = requests.get(f'https://v2-api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
+                r = requests.get(f'https://api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
                 r.encoding = 'utf-8'
                 ans = r.json()
                 ingameName = ans['data']['name']+'#'+ans['data']['tag']

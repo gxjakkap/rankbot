@@ -29,7 +29,7 @@ class valrankhis(BaseCommand):
         tagl = l[ind+1:]
         ign = ''.join(ignl)
         tag = ''.join(tagl)
-        r = requests.get(f'https://v2-api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
+        r = requests.get(f'https://api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
         r.encoding = 'utf-8'
         try:
             ans = r.json()
@@ -43,11 +43,11 @@ class valrankhis(BaseCommand):
         except:
             await message.channel.send(ans['message'])
         body = {"type": "competitiveupdates","value": x['puuid'],"region": reg,"queries": "?queue=competitive"}
-        r2 = requests.post('https://v2-api.henrikdev.xyz/valorant/v1/raw', json = body)
+        r2 = requests.post('https://api.henrikdev.xyz/valorant/v1/raw', json = body)
         postans = r2.json()
         diff = postans['Matches'][0]['RankedRatingEarned']
         map = postans['Matches'][0]['MapID']
-        r3 = requests.get('http://v2-api.henrikdev.xyz/valorant/v2/match/'+postans['Matches'][0]['MatchID'])
+        r3 = requests.get('http://api.henrikdev.xyz/valorant/v2/match/'+postans['Matches'][0]['MatchID'])
         r3ans = r3.json()
         matchresults = str(r3ans['data']['teams']['red']['rounds_won'])+' - '+str(r3ans['data']['teams']['blue']['rounds_won'])
         if postans['Matches'][0]['TierAfterUpdate'] > postans['Matches'][0]['TierBeforeUpdate']:
