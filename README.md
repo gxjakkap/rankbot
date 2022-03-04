@@ -18,6 +18,12 @@ https://guntxjakka.me/rankbot
 
 See [wiki](https://github.com/gxjakkap/rankbot/wiki).
 
+## Legal
+
+Rankbot was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games.  Riot Games does not endorse or sponsor this project.
+
+After commit [b16469c](https://github.com/gxjakkap/rankbot/commit/b16469c964dbd5a2a751ef535b972b9fe49358a5), Rankbot's now complying to Riot's Legal Jibber Jabber. 
+
 ## Credits
 
 [agubelu/discord-bot-template](https://github.com/agubelu/discord-bot-template) : Blank bot template used.
