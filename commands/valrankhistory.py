@@ -76,7 +76,7 @@ class valrankhis(BaseCommand):
             wl = 'Lose'
             color = [237,92,89]
         msg = nextcord.Embed(color=nextcord.Color.from_rgb(color[0], color[1], color[2]))
-        msg.set_author(name=x['name']+"'s latest competitive match", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
+        msg.set_author(name=x['name']+"'s latest competitive match")
         msg.add_field(name="Map", value=misc.getvalmapname(map))
         msg.add_field(name="Results (Red-Blue)", value=matchresults)
         msg.add_field(name="RR Change", value=status, inline=True)

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rankbot"
-version = "1.0.4"
+version = "1.0.5"
 description = "Discord bot for querying rank for VALORANT and Apex Legends player."
 authors = ["Jakkaphat Chalermphanaphan <gunt@guntxjakka.me>"]
 license = "	GPL-3.0-only"

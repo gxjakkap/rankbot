@@ -40,7 +40,7 @@ class valrank(BaseCommand):
             rankName = x['currenttierpatched']
             if rankName==None:
                 msg = nextcord.Embed(color=nextcord.Color.from_rgb(110,113,118))
-                msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
+                msg.set_author(name="VALORANT Competitive")
                 msg.add_field(name="Name", value=f'{ign}#{tag}', inline=False)
                 msg.add_field(name="Region", value=reg.upper(), inline=False)
                 msg.add_field(name="Rank", value="Unranked", inline=True)
@@ -56,7 +56,7 @@ class valrank(BaseCommand):
                 ingameName = str(x['name'])+'#'+str(x['tag'])
                 rankColor = misc.getvalrankcolor(x['currenttier'])
                 msg = nextcord.Embed(color=nextcord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
-                msg.set_author(name="VALORANT Competitive", icon_url="https://cdn.statically.io/img/raw.githubusercontent.com/w=20,h=20/gxjakkap/rankbot-img/main/img/gameicon/val.png")
+                msg.set_author(name="VALORANT Competitive")
                 msg.add_field(name="Name", value=ingameName, inline=False)
                 msg.add_field(name="Region", value=reg.upper(), inline=False)
                 msg.add_field(name="Rank", value=rankName, inline=True)
