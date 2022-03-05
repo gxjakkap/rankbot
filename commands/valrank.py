@@ -1,8 +1,10 @@
 import requests
+import sendreq
 import nextcord
 import misc
 import asyncio
-from commands.base_command  import BaseCommand
+from commands.base_command import BaseCommand
+
 
 class valrank(BaseCommand):
     def __init__(self):
@@ -20,7 +22,7 @@ class valrank(BaseCommand):
         i = 0
         for i in range(length):
             if l[i] == ' ':
-                 l[i] = '%20'
+                l[i] = '%20'
         try:
             ind = l.index('#')
         except:
@@ -29,17 +31,15 @@ class valrank(BaseCommand):
         tagl = l[ind+1:]
         ign = ''.join(ignl)
         tag = ''.join(tagl)
-        r = requests.get(f'https://api.henrikdev.xyz/valorant/v1/mmr/{reg}/{ign}/{tag}')
-        r.encoding = 'utf-8'
+
+        ans = sendreq.valapiget(
+            f'https://api.henrikdev.xyz/valorant/v1/mmr/{reg}/{ign}/{tag}')
         try:
-            ans = r.json()
-        except:
-            await message.channel.send(message.author.mention+"\n"+"There's an error decoding JSON response. Please try again later.")
-        try:
-            x  = ans['data']
+            x = ans['data']
             rankName = x['currenttierpatched']
-            if rankName==None:
-                msg = nextcord.Embed(color=nextcord.Color.from_rgb(110,113,118))
+            if rankName == None:
+                msg = nextcord.Embed(
+                    color=nextcord.Color.from_rgb(110, 113, 118))
                 msg.set_author(name="VALORANT Competitive")
                 msg.add_field(name="Name", value=f'{ign}#{tag}', inline=False)
                 msg.add_field(name="Region", value=reg.upper(), inline=False)
@@ -55,7 +55,8 @@ class valrank(BaseCommand):
                 rankPoint = str(x['ranking_in_tier'])+'RP'
                 ingameName = str(x['name'])+'#'+str(x['tag'])
                 rankColor = misc.getvalrankcolor(x['currenttier'])
-                msg = nextcord.Embed(color=nextcord.Color.from_rgb(rankColor[0], rankColor[1], rankColor[2]))
+                msg = nextcord.Embed(color=nextcord.Color.from_rgb(
+                    rankColor[0], rankColor[1], rankColor[2]))
                 msg.set_author(name="VALORANT Competitive")
                 msg.add_field(name="Name", value=ingameName, inline=False)
                 msg.add_field(name="Region", value=reg.upper(), inline=False)
@@ -68,8 +69,7 @@ class valrank(BaseCommand):
                     message.channel.send(embed=msg)
                 )
         except:
-            if r.status_code==429 and ans['message']=="Riot Origin Server Rate Limit, try again later":
+            if ans['status'] == 429 and ans['message'] == "Riot Origin Server Rate Limit, try again later":
                 await message.channel.send(message.author.mention+"\nRate Limit Error: Requested player likely changed their Riot ID recently. Try again later or try querying their old name.")
             else:
                 await message.channel.send(message.author.mention+"\n"+ans['message'])
-        
