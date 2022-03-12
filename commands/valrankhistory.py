@@ -1,7 +1,6 @@
-import requests
 import nextcord
 import misc
-import asyncio
+from sendreq import valapiget, valapipost
 from commands.base_command import BaseCommand
 
 
@@ -30,15 +29,11 @@ class valrankhis(BaseCommand):
         tagl = l[ind+1:]
         ign = ''.join(ignl)
         tag = ''.join(tagl)
-        header = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
-        r = requests.get(
-            f'https://api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}', headers=header)
-        r.encoding = 'utf-8'
         try:
-            ans = r.json()
+            ans = valapiget(
+                f'https://api.henrikdev.xyz/valorant/v1/account/{ign}/{tag}')
         except:
-            if r.status_code == 204:
+            if ans['data']['currenttier'] == None:
                 await message.channel.send(message.author.mention+"\n"+"This Player either never played competitive or haven't played competitive in a while. (API returns no content/204)")
             else:
                 await message.channel.send(message.author.mention+"\n"+"There's an error decoding JSON response. Please try again later.")
@@ -48,14 +43,12 @@ class valrankhis(BaseCommand):
             await message.channel.send(ans['message'])
         body = {"type": "competitiveupdates",
                 "value": x['puuid'], "region": reg, "queries": "?queue=competitive"}
-        r2 = requests.post(
-            'https://api.henrikdev.xyz/valorant/v1/raw', json=body, headers=header)
-        postans = r2.json()
+        postans = valapipost('https://api.henrikdev.xyz/valorant/v1/raw', body)
         diff = postans['Matches'][0]['RankedRatingEarned']
         map = postans['Matches'][0]['MapID']
-        r3 = requests.get('http://api.henrikdev.xyz/valorant/v2/match/' +
-                          postans['Matches'][0]['MatchID'], headers=header)
-        r3ans = r3.json()
+        matchid = postans['Matches'][0]['MatchID']
+        r3ans = valapiget(
+            f'http://api.henrikdev.xyz/valorant/v2/match/{matchid}')
         matchresults = str(r3ans['data']['teams']['red']['rounds_won']) + \
             ' - '+str(r3ans['data']['teams']['blue']['rounds_won'])
         if postans['Matches'][0]['TierAfterUpdate'] > postans['Matches'][0]['TierBeforeUpdate']:
@@ -92,7 +85,4 @@ class valrankhis(BaseCommand):
         msg.add_field(name="Results", value=wl, inline=True)
         msg.set_image(url=misc.getvalmappic(postans['Matches'][0]['MapID']))
         msg.set_footer(text="Data provided by henrikdev.xyz")
-        await asyncio.gather(
-            message.channel.send(message.author.mention + "\n"),
-            message.channel.send(embed=msg)
-        )
+        await message.reply(embed=msg)

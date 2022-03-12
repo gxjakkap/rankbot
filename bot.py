@@ -6,7 +6,7 @@ import misc
 import json
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from multiprocessing                import Process
+
 
 # Set to remember if the bot is already running, since on_ready may be called
 # more than once on reconnects
@@ -36,19 +36,19 @@ def main():
 
         # Set the playing status
         if settings.NP_STATUS:
-            if settings.NP_MODE=="STREAM":
+            if settings.NP_MODE == "STREAM":
                 print("Setting NP as STREAM mode", flush=True)
                 await client.change_presence(activity=nextcord.Streaming(name=settings.NP_STATUS, url=settings.NP_URL))
-            elif settings.NP_MODE=="LISTEN":
+            elif settings.NP_MODE == "LISTEN":
                 print("Setting NP as LISTEN mode", flush=True)
                 await client.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.listening, name=settings.NP_STATUS))
-            elif settings.NP_MODE=="WATCH":
+            elif settings.NP_MODE == "WATCH":
                 print("Setting NP as WATCH mode", flush=True)
                 await client.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.watching, name=settings.NP_STATUS))
-            elif settings.NP_MODE=="GAME":
+            elif settings.NP_MODE == "GAME":
                 print("Setting NP as GAME mode", flush=True)
                 await client.change_presence(activity=nextcord.Game(name=settings.NP_STATUS))
-            else: 
+            else:
                 print("NP mode not recognized, Setting NP as GAME mode", flush=True)
                 await client.change_presence(activity=nextcord.Game(name=settings.NP_STATUS))
 
@@ -61,8 +61,8 @@ def main():
         if text.startswith(prefix) and text != prefix:
             cmd_split = text[len(prefix):].split()
             try:
-                await message_handler.handle_command(cmd_split[0].lower(), 
-                                      cmd_split[1:], message, client)
+                await message_handler.handle_command(cmd_split[0].lower(),
+                                                     cmd_split[1:], message, client)
             except:
                 print("Error while handling message", flush=True)
                 raise
@@ -73,20 +73,19 @@ def main():
         defaultChannel = guild.system_channel
         if defaultChannel != "None":
             await defaultChannel.send(f"Hi!, My name is Rankbot. My default prefix is `{settings.COMMAND_PREFIX}` .\nTo change my prefix, use `{settings.COMMAND_PREFIX}prefix change <new prefix>`. To get help, use `{settings.COMMAND_PREFIX}help`.")
-        with open('prefix.json', 'r') as f: 
-            prefixes = json.load(f) 
+        with open('prefix.json', 'r') as f:
+            prefixes = json.load(f)
         prefixes[str(guild.id)] = settings.COMMAND_PREFIX
-        with open('prefix.json', 'w') as f: 
+        with open('prefix.json', 'w') as f:
             json.dump(prefixes, f, indent=4)
-        
 
     @client.event
-    async def on_guild_remove(guild): 
+    async def on_guild_remove(guild):
         print(f"Removed from {guild.name} ({guild.id})")
-        with open('prefix.json', 'r') as f: 
+        with open('prefix.json', 'r') as f:
             prefixes = json.load(f)
         prefixes.pop(str(guild.id))
-        with open('prefix.json', 'w') as f: 
+        with open('prefix.json', 'w') as f:
             json.dump(prefixes, f, indent=4)
 
     @client.event

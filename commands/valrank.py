@@ -1,8 +1,6 @@
-import requests
-import sendreq
 import nextcord
 import misc
-import asyncio
+from sendreq import valapiget
 from commands.base_command import BaseCommand
 
 
@@ -32,7 +30,7 @@ class valrank(BaseCommand):
         ign = ''.join(ignl)
         tag = ''.join(tagl)
 
-        ans = sendreq.valapiget(
+        ans = valapiget(
             f'https://api.henrikdev.xyz/valorant/v1/mmr/{reg}/{ign}/{tag}')
         try:
             x = ans['data']
@@ -47,10 +45,7 @@ class valrank(BaseCommand):
                 msg.add_field(name="Rank Point", value="None", inline=True)
                 msg.set_image(url=misc.getvalrankpic(0))
                 msg.set_footer(text="Data provided by henrikdev.xyz")
-                await asyncio.gather(
-                    message.channel.send(message.author.mention + "\n"),
-                    message.channel.send(embed=msg)
-                )
+                await message.reply(embed=msg)
             else:
                 rankPoint = str(x['ranking_in_tier'])+'RP'
                 ingameName = str(x['name'])+'#'+str(x['tag'])
@@ -64,10 +59,7 @@ class valrank(BaseCommand):
                 msg.add_field(name="Rank Point", value=rankPoint, inline=True)
                 msg.set_image(url=misc.getvalrankpic(x['currenttier']))
                 msg.set_footer(text="Data provided by henrikdev.xyz")
-                await asyncio.gather(
-                    message.channel.send(message.author.mention + "\n"),
-                    message.channel.send(embed=msg)
-                )
+                await message.reply(embed=msg)
         except:
             if ans['status'] == 429 and ans['message'] == "Riot Origin Server Rate Limit, try again later":
                 await message.channel.send(message.author.mention+"\nRate Limit Error: Requested player likely changed their Riot ID recently. Try again later or try querying their old name.")
