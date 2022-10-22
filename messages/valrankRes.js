@@ -26,7 +26,7 @@ exports.valrankMessage = async (name, tag, region) => {
 
     const res = await getPlayerRank(name, tag, region)
     if (!res.data || res.status===404){
-        return [false, `API returns 404. Either ${riotTags.name}#${riotTags.tag} is unranked or simply doesn't exist.`]
+        return [false, `API returns 404. Either ${name}#${tag} is unranked or simply doesn't exist.`]
     }
 
     const rankPoint = res.data.ranking_in_tier
