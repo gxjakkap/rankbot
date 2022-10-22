@@ -5,14 +5,12 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 ## Invite link
 https://guntxjakka.me/rankbot
 
+## Changelog
+
+Latest changelog can be found [here](https://github.com/gxjakkap/rankbot/blob/main/CHANGELOG.md).
+
 ## Requirements
-1. Python 3.9
-
-2. Modules listed in requirements.txt 
-
-## Installation
-
-*see [wiki](https://github.com/gxjakkap/rankbot/wiki/1.Installation)*
+1. Node.js v.16.14 LTS
 
 ## Commands
 
@@ -24,10 +22,9 @@ Rankbot was created under Riot Games' "Legal Jibber Jabber" policy using assets 
 
 After commit [b16469c](https://github.com/gxjakkap/rankbot/commit/b16469c964dbd5a2a751ef535b972b9fe49358a5), Rankbot's now complying to Riot's Legal Jibber Jabber. 
 
-## Credits
-
-[agubelu/discord-bot-template](https://github.com/agubelu/discord-bot-template) : Blank bot template used.
 
 ## License
 
-[GNU General Public License v3.0](https://github.com/gxjakkap/rankbot/blob/main/LICENSE)
+[MIT License](https://github.com/gxjakkap/rankbot/blob/main/LICENSE)
+
+*this license only applies to Rankbot v2.0.0 only. Version of Rankbot earlier than v2.0.0 is licensed under [GNU General Public License V3](https://github.com/gxjakkap/rankbot/blob/c0bbaba0d56956a689faf4af91b2b1b33ea02213/LICENSE)*
