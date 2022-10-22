@@ -22,7 +22,7 @@ exports.run = (client, message, args) => {
         pmsg += `**${prefix}${item.name}**: ${item.desc}\n`
     })
     const fields = [
-        {name: "a", value: pmsg},
+        {name: "List", value: pmsg},
     ]
     const msg = new EmbedBuilder()
         .setColor([147, 181, 198])
