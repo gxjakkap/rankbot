@@ -36,7 +36,12 @@ client.on(Events.MessageCreate, message => {
     if (message.content.includes("@here") || message.content.includes("@everyone")) return;
     if (message.content.indexOf(prefix) !== 0) return;
 
+	if (message.mentions.has(client.user.id) && message.type !== 'REPLY') {
+        message.reply(`My prefix is "${prefix}". Try running ${prefix}help for a list of command.`)
+    }
+
     console.log(`[${message.guild}] ${message.author.tag}: ${message.content}`)
+
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
