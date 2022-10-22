@@ -19,4 +19,4 @@ exports.run = (client, message, args) => {
 }
 
 exports.name = "apexrank"
-exports.desc = "Get Apex Legends rank for requested player"
+exports.desc = "Get Apex Legends rank for requested player. Args:[Platform, Handle]"

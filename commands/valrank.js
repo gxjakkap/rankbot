@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
     args.splice(0, 1)
     const riotTag = processRiotTags(args)
     if (!riotTag){
-        message.reply("Invalid Argument!") //invalid riot tags
+        message.reply("Invalid Riot Tag!") //invalid riot tags
         return
     }
 
@@ -21,4 +21,4 @@ exports.run = (client, message, args) => {
 }
 
 exports.name = "valrank"
-exports.desc = "Get VALORANT rank for requested player. Specify regions in first parameter: AP, NA, KR, EU."
+exports.desc = "Get VALORANT rank for requested player. Args:[Region, RiotTag]"

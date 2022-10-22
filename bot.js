@@ -11,6 +11,7 @@ const client = new Client({
 	],
 });
 
+// update presence and log bot's discord tag on ready
 client.once(Events.ClientReady, c => {
 	client.user.setPresence({
 		activities: [{name: "ranked game", type: ActivityType.Playing}],
