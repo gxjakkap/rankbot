@@ -21,13 +21,19 @@ client.once(Events.ClientReady, c => {
 });
 
 //message commands collection
-client.commands = new Collection();
-const commands = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
+client.commands = new Collection()
+client.aliases = new Collection()
+const commands = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
 for (const file of commands) {
-    const commandName = file.split(".")[0];
-    const command = require(`./commands/${file}`);
-    console.log(`Attempting to load command ${commandName}`);
-    client.commands.set(commandName, command);
+    const commandName = file.split(".")[0]
+    const command = require(`./commands/${file}`)
+    console.log(`Attempting to load command ${commandName}`)
+	if (command.aliases){
+		command.aliases.forEach(alias => {
+			client.aliases.set(alias, commandName)
+		})
+	}
+    client.commands.set(commandName, command)
 }
 
 //message commands handler
@@ -46,12 +52,20 @@ client.on(Events.MessageCreate, message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    //help commands
+	// check for aliases
+	const aliasCommand = client.aliases.get(command)
+	if (aliasCommand){
+		const rcmd = client.commands.get(aliasCommand)
+		rcmd.run(client, message, args)
+		return
+	}
+
+    /* //help commands
     if (["help", "commands"].includes(command)){
         const cmd = client.commands.get("cmd")
         cmd.run(client, message, args)
         return
-    }
+    } */
 
     const cmd = client.commands.get(command);
     if (!cmd) return;

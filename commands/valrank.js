@@ -21,4 +21,5 @@ exports.run = (client, message, args) => {
 }
 
 exports.name = "valrank"
+exports.aliases = ["vlr", "valorantrank"]
 exports.desc = "Get VALORANT rank for requested player. Args:[Region, RiotTag]"
