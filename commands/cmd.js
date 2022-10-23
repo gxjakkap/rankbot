@@ -19,7 +19,7 @@ console.log(commandCollections)
 exports.run = (client, message, args) => {
     let pmsg = ''
     commandCollections.forEach(item => {
-        pmsg += `**${prefix}${item.name}**: ${item.desc}\n`
+        pmsg += `**${prefix}${item.name}**: ${item.desc}\n\n`
     })
     const fields = [
         {name: "List", value: pmsg},
