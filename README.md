@@ -27,4 +27,4 @@ After commit [b16469c](https://github.com/gxjakkap/rankbot/commit/b16469c964dbd5
 
 [MIT License](https://github.com/gxjakkap/rankbot/blob/main/LICENSE)
 
-*this license only applies to Rankbot v2.0.0 only. Version of Rankbot earlier than v2.0.0 is licensed under [GNU General Public License V3](https://github.com/gxjakkap/rankbot/blob/c0bbaba0d56956a689faf4af91b2b1b33ea02213/LICENSE)*
+*this license only applies to Rankbot v2.x . Version of Rankbot earlier than v2.0.0 is licensed under [GNU General Public License V3](https://github.com/gxjakkap/rankbot/blob/c0bbaba0d56956a689faf4af91b2b1b33ea02213/LICENSE)*
