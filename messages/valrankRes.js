@@ -28,7 +28,7 @@ exports.valrankMessage = async (name, tag, region) => {
 
     //404 response: for player that doesn't exist and unranked player that has never played rank.
     if (!res.data || res.status===404){
-        return [false, `API returns 404. Either ${name}#${tag} is **unranked** or simply doesn't exist.`]
+        return [false, `Data not found. Either ${name.join(" ")}#${tag} is **unranked** or simply doesn't exist.`]
     }
 
     const rankPoint = res.data.ranking_in_tier
