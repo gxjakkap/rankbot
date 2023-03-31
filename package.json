@@ -5,7 +5,8 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "dev": "nodemon ."
   },
   "author": "Jakkaphat Chalermphanaphan",
   "license": "MIT",
@@ -13,5 +14,8 @@
     "axios": "^1.1.3",
     "discord.js": "^14.6.0",
     "unofficial-valorant-api": "^2.3.0-stable.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
