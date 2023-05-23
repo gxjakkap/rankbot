@@ -3,7 +3,7 @@ const { valnccacheresetMessage } = require("../messages/valnccacheresetRes")
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('valrank')
+        .setName('valnccachereset')
         .setDescription("Reset cache after name change for VAL")
         .addStringOption(options => options.setName('name').setDescription("Player's name").setRequired(true))
         .addStringOption(options => options.setName('tag').setDescription("Player's tagline").setRequired(true)),
