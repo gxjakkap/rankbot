@@ -21,7 +21,12 @@ exports.valnccacheresetMessage = async (name, tag) => {
 
     //404 response: for player that doesn't exist and unranked player that has never played rank.
     if (!res.data || res.status===404){
-        return [false, `Player ${name.join(" ")}#${tag} not found.`]
+        console.log(typeof name)
+        let namef = name
+        if (Array.isArray(name)){
+            namef = name.replace(',', ' ')
+        }
+        return [false, `Player ${namef}#${tag} not found.`]
     }
 
     const card = res.data.card.small
