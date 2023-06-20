@@ -26,6 +26,8 @@ exports.valrankMessage = async (name, tag, region) => {
 
     const res = await getPlayerRank(name, tag, region)
 
+    console.log(res)
+
     let namef = name
 
     //404 response: for player that doesn't exist and unranked player that has never played rank.
@@ -42,9 +44,12 @@ exports.valrankMessage = async (name, tag, region) => {
     const cdnUrl = getValRankImgLink(res.data.currenttier)
 
     //sometimes unranked player also return a null data with a 200 code. mostly from player that hasn't played ranked in a long time.
-    if (!rankPoint || !rankName){
+    if (!rankName){
+        if (Array.isArray(name)){
+            namef = name.replace(',', ' ')
+        }
         const fields = [
-            {name: "Name", value: `${name}#${tag}`},
+            {name: "Name", value: `${namef}#${tag}`},
             {name: "Region", value: region.toUpperCase()},
             {name: "Rank", value: `Unranked`},
         ]
