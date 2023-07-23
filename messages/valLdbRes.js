@@ -34,17 +34,13 @@ exports.valLdbMessage = async (name, tag, region) => {
         return [false, "Invalid Region!"]
     }
 
-    const res = await getLeaderboardRank(name, tag, region)
-
     let namef = name
+    namef = name.replace(',', ' ')
+
+    const res = await getLeaderboardRank(namef, tag, region)
 
     //404 response: for player that doesn't exist and unranked player that has never played rank.
     if (!res.data || res.status===404){
-        console.log(typeof name)
-        namef = name.replace(',', ' ')
-        /* if (Array.isArray(name)){
-            namef = name.replace(',', ' ')
-        } */
         return [false, `Data not found. Maybe ${namef}#${tag} is **not** on the leaderboard.`]
     }
 
