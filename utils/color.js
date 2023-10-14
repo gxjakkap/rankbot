@@ -13,6 +13,7 @@ const getValRankColor = (rank) => {
 
 const getApexRankColor = (rank) => {
     const ApexRankColor = {
+        "Rookie": [128,108,89],
         "Bronze": [113, 75, 51],
         "Silver": [107, 106, 108],
         "Gold": [154, 123, 67],
