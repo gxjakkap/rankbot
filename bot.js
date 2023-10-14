@@ -1,6 +1,7 @@
 const { Client, Events, GatewayIntentBits, Collection, REST, Routes, ActivityType } = require('discord.js');
 const { token, clientId, prefix } = require('./config.json');
 const fs = require("fs")
+const Logging = require('./utils/logging')
 
 const client = new Client({
 	intents: [
@@ -46,7 +47,7 @@ client.on(Events.MessageCreate, message => {
         message.reply(`My prefix is "${prefix}". Try running ${prefix}help for a list of command.`)
     }
 
-    console.log(`[${message.guild}] ${message.author.tag}: ${message.content}`)
+	Logging.commandLogger('MSG', message.guild, message.author.tag, message.content)
 
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
@@ -59,13 +60,6 @@ client.on(Events.MessageCreate, message => {
 		rcmd.run(client, message, args)
 		return
 	}
-
-    /* //help commands
-    if (["help", "commands"].includes(command)){
-        const cmd = client.commands.get("cmd")
-        cmd.run(client, message, args)
-        return
-    } */
 
     const cmd = client.commands.get(command);
     if (!cmd) return;
@@ -108,6 +102,7 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 
 	try {
+		Logging.commandLogger('INTER', interaction.guild.name, interaction.user.tag, `${interaction.commandName} ${Logging.unpackOptions(interaction.options.data)}`)
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
