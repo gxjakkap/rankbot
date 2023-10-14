@@ -5,9 +5,6 @@ Discord bot for querying rank for VALORANT and Apex Legends player. Utilizing [m
 ## Invite link
 https://guntxjakka.me/rankbot
 
-## Changelog
-
-Latest changelog can be found [here](https://github.com/gxjakkap/rankbot/blob/main/CHANGELOG.md).
 
 ## Requirements
 1. Node.js v.16.14 LTS
