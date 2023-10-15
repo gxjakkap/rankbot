@@ -1,12 +1,13 @@
 const { SlashCommandBuilder} = require("discord.js")
 const { apexrankMessage } = require("../messages/apexrankRes")
+const { apexPlatformsOptions } = require("../utils/apex")
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('apexrank')
         .setDescription("Get Apex Legends Player's rank")
-        .addStringOption(options => options.setName('platform').setDescription("Player's platform").setRequired(true))
-        .addStringOption(options => options.setName('handle').setDescription("Player's name or handler").setRequired(true)),
+        .addStringOption(options => options.setName('platform').setDescription("Player's platform").setRequired(true).addChoices(...apexPlatformsOptions))
+        .addStringOption(options => options.setName('handle').setDescription("Player's name or handler (Origin)").setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();
         const platform = interaction.options.getString('platform')

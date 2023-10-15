@@ -78,7 +78,7 @@ for (const file of interactionFiles) {
 }
 
 //register interaction commands
-const rest = new REST({ version: '10' }).setToken(token);
+const rest = new REST().setToken(token);
 (async () => {
 	try {
 		console.log(`Started refreshing ${interactions.length} application (/) commands.`);

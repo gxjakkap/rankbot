@@ -49,3 +49,12 @@ exports.getValRanknameFromCompetitiveTier = (competitiveTier) => {
     }
     return rankDict[competitiveTier]
 }
+
+exports.valRegionOptions = [
+    { name: 'North America', value: 'na' },
+    { name: 'Europe', value: 'eu' },
+    { name: 'Asia Pacific', value: 'ap' },
+    { name: 'Korea', value: 'kr' },
+    { name: 'Brazil', value: 'br' },
+    { name: 'Latin America', value: 'latam' }
+]

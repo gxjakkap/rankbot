@@ -1,11 +1,12 @@
 const { SlashCommandBuilder} = require("discord.js")
 const { apexarenaMessage } = require("../messages/apexarenaRes")
+const { apexPlatformsOptions } = require("../utils/apex")
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('apexarena')
         .setDescription("Get Apex Legends Player's arena rank")
-        .addStringOption(options => options.setName('platform').setDescription("Player's platform").setRequired(true))
+        .addStringOption(options => options.setName('platform').setDescription("Player's platform").setRequired(true).addChoices(...apexPlatformsOptions))
         .addStringOption(options => options.setName('handle').setDescription("Player's name or handler").setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();

@@ -17,6 +17,7 @@ exports.apexrankMessage = async(handle, platform) => {
         return [false, "Invalid platform!"]
     }
     const res = await getPlayerRank(handle, platform.toUpperCase())
+    console.log(res)
     const globalObject = res.data.global
     const fields = [
         {name: "Name", value: `${globalObject.name}`},
