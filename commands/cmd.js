@@ -33,4 +33,4 @@ exports.run = (client, message, args) => {
 
 exports.name = "cmd"
 exports.aliases = ["help", "commands"]
-exports.desc = "Get VALORANT rank for requested player. Specify regions in first parameter: AP, NA, KR, EU."
+exports.desc = "Display all commands available for Rankbot."
