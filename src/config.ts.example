@@ -1,0 +1,7 @@
+export const token = ""
+export const clientId = ""
+export const valapitoken = ""
+export const apexapitoken = ""
+export const prefix = ""
+export const valImgCdnBaseUrl = ""
+export const apexImgCdnBaseUrl = ""
