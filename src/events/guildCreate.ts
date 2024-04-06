@@ -13,7 +13,7 @@ const event: BotEvent = {
         tts: false,
         embeds: [
           {
-            description: `📑Check out my commands at: https://rankbot.guntxjakka.me/ \n\nMy default prefix is ${"`" + prefix + "`"}`,
+            description: `📑Check out my commands at: https://rankbot.guntxjakka.me/ \n\n**My default prefix is ${"`" + prefix + "`"}**`,
             fields: [],
             title: "Commands",
             url: "https://rankbot.guntxjakka.me/"
