@@ -7,11 +7,11 @@ https://guntxjakka.me/rankbot
 
 
 ## Requirements
-1. Node.js v.16.14 LTS
+1. Node.js v18 LTS
 
 ## Commands
 
-See [wiki](https://github.com/gxjakkap/rankbot/wiki).
+See [docs](https://rankbot.guntxjakka.me/docs/getting-started).
 
 ## Legal
 
