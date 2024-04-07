@@ -9,6 +9,8 @@ hero:
     - theme: brand
       text: Add to server
       link: https://guntxjakka.me/rankbot
+      rel: noopener,noreferrer
+      target: _blank
     - theme: alt
       text: Read the docs
       link: /docs/getting-started
