@@ -25,7 +25,7 @@ const command : Command = {
         }).connect()
 
         const res = await redis.del(message.guild.id)
-        if (res === 200){
+        if (res === 1){
             const rep = "Prefix for `" + message.guild?.name + "` is now `" + prefix + "`"
             message.reply(rep)        
         }
