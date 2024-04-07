@@ -8,7 +8,7 @@ After commit [b16469c](https://github.com/gxjakkap/rankbot/commit/b16469c964dbd5
 
 ## Electronic Arts
 
-Rankbot was created under [EA’s Intellectual Property Usage Guidline](https://help.ea.com/en/help/faq/how-to-request-permission-for-ea-games-content/) Electronic Arts does not endorse or sponsor this project in any way.
+Rankbot was created under [EA’s Intellectual Property Usage Guidline](https://help.ea.com/en/help/faq/how-to-request-permission-for-ea-games-content/). Electronic Arts does not endorse or sponsor this project in any way.
 
 ## Contact
 
