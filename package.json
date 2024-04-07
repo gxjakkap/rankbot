@@ -16,7 +16,9 @@
   "dependencies": {
     "@discordjs/rest": "^2.2.0",
     "@libsql/client": "^0.6.0",
+    "@types/axios": "^0.14.0",
     "@types/node": "^18.7.14",
+    "axios": "^1.6.8",
     "discord-api-types": "^0.37.79",
     "discord.js": "14.13.0",
     "redis": "^4.6.13",

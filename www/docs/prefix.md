@@ -8,8 +8,12 @@
 
 Aliases: `changeprefix`
 
+![changeprefix commands usage](/assets/gen/changeprefix.png)
+
 ## Removing prefix
 
 **Usage:** !!removeprefix
 
 Aliases: `rmprefix`, `resetprefix`
+
+![removeprefix commands usage](/assets/gen/removeprefix.png)

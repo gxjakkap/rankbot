@@ -14,7 +14,19 @@ export default defineConfig({
       { text: 'Invite', link: 'https://guntxjakka.me/rankbot' }
     ],
 
-    sidebar: [{ text: 'Privacy Policy', link: '/privacy-policy' }, ...getSidebar({ contentRoot: 'www', contentDirs: ['docs'], collapsible: true, collapsed: false, useFrontmatter: true})],
+    sidebar: [
+      { text: 'Privacy Policy', link: '/privacy-policy' }, 
+      { text: 'General', items: [
+        { text: 'Getting Started', link: '/docs/getting-started' }, 
+        { text: 'Prefix', link: '/docs/prefix' }, 
+      ]},
+      ...getSidebar({ 
+        contentRoot: 'www', 
+        contentDirs: ['docs/valorant', 'docs/apex'], 
+        collapsible: true, collapsed: false, 
+        useFrontmatter: true
+      })
+    ],
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/gxjakkap/rankbot' },

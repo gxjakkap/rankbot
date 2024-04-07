@@ -11,6 +11,8 @@ Get VALORANT player's leaderboard position.
 
 Aliases: `vldb`, `valtop`, `valorantldb`
 
+![valldb commands usage](/assets/val/msg/valldb.png)
+
 ## SlashCommand
 
 **Usage:** /valldb `regions` `name` `tag`
@@ -18,3 +20,7 @@ Aliases: `vldb`, `valtop`, `valorantldb`
 - `regions`: Player's region. See valid options [here](/docs/valorant/regions).
 - `name`: Player's name. e.g.: `Autumn`
 - `tag`: Player's tag. e.g.: `8735`
+
+![valldb slashcommands usage](/assets/val/slsh/valldb_usage.png)
+
+![valldb slashcommands result](/assets/val/slsh/valldb_res.png)

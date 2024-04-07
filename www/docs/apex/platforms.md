@@ -8,4 +8,4 @@ Here's the list of valid platforms.
 
 - Xbox: `X1`
 
-*mobile/switch are not support atm. see [here](https://apexlegendsapi.com/#player-statistics:~:text=or%20X1%20(Xbox).-,Mobile%20is%20not%20supported%20at%20the%20moment.,-version)*
+*mobile/switch are not support atm. see [here](https://apexlegendsapi.com/#player-statistics)*

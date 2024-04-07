@@ -12,9 +12,15 @@ If player recently changed their riot tag, the cache might still have their old 
 
 Aliases: `vlrreset`, `valcachereset`
 
+![valnccachereset commands usage](/assets/val/msg/valnccachereset.png)
+
 ## SlashCommand
 
 **Usage:** /valnccachereset `name` `tag`
 
 - `name`: Player's name. e.g.: `Autumn`
 - `tag`: Player's tag. e.g.: `8735`
+
+![valnccachereset slashcommands usage](/assets/val/slsh/valnccachereset_usage.png)
+
+![valnccachereset slashcommands result](/assets/val/slsh/valnccachereset_res.png)
