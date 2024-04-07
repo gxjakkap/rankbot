@@ -28,13 +28,17 @@ const event: BotEvent = {
         ]
       }
       if (guild.systemChannel){
-        guild.systemChannel.send(welcomeMessage)
+        guild.systemChannel.send(welcomeMessage).catch((err) => {
+          console.error(`[Err] Error while sending message to system channel in the guild "${guild.name}" (${guild.id}).`)
+        })
       }
       else {
-        guild.channels.cache.some(c => {
+        guild.channels.cache.some((c) => {
             if (c.type === ChannelType.GuildText){
-                c.send(welcomeMessage)
-                return true
+              c.send(welcomeMessage).catch((err) => {
+                console.error(`[Err] Error while sending message to #${c.name} in the guild "${guild.name}" (${guild.id}).`)
+              })
+              return true
             }
         })
       }
