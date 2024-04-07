@@ -9,6 +9,8 @@ https://guntxjakka.me/rankbot
 ## Requirements
 
 1. Node.js v18 LTS
+2. SQLite database
+3. Redis database
 
 ## Commands
 
