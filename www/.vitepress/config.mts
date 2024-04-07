@@ -5,6 +5,7 @@ import { getSidebar } from 'vitepress-plugin-auto-sidebar'
 export default defineConfig({
   title: "Rankbot",
   description: "Query any player's rank without hassle",
+  cleanUrls: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
