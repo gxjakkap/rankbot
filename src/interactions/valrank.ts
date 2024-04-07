@@ -1,6 +1,7 @@
 import { CacheType, ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import { valrankMessage } from "../messages/valrankres"
 import { valRegionOptions } from "../utils/val"
+import { msgSendFailHandler } from "../utils/discord"
 
 const ValRank = {
     data: new SlashCommandBuilder()
@@ -15,32 +16,31 @@ const ValRank = {
             const playerName = interaction.options.getString('name')
             const tagline = interaction.options.getString('tag')
             const region = interaction.options.getString('region')
-            valrankMessage(playerName as string, tagline as string, region as string).then(res => {
-                if (!res.completed){
-                    if (res.message){
-                        interaction.editReply(res.message)
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
-                    return
+            const res = await valrankMessage(playerName as string, tagline as string, region as string)
+            if (!res.completed){
+                if (res.message){
+                    await interaction.editReply(res.message)
                 }
                 else {
-                    if (res.embed){
-                        interaction.editReply({embeds: [res.embed]})
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
+                    await interaction.editReply("Message Error!")
                 }
-            })
+                return
+            }
+            else {
+                if (res.embed){
+                    await interaction.editReply({embeds: [res.embed]})
+                }
+                else {
+                    await interaction.editReply("Message Error!")
+                }
+            }
         }
         catch{
             try{
-                interaction.reply("Error.")
+                await interaction.reply("Error.")
             }
             catch {
-                interaction.editReply("Error.")
+                await interaction.editReply("Error.")
             }
         }  
     }

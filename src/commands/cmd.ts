@@ -3,6 +3,7 @@ import { readdirSync } from "fs"
 import { join } from "path"
 import { prefix } from "../config"
 import { Command } from "../types"
+import { msgSendFailHandler } from "../utils/discord"
 
 const commands = readdirSync(__dirname).filter(file => file.endsWith(".ts"))
 const commandCollections: { name: string, desc: string}[] = []
@@ -32,7 +33,7 @@ const command : Command = {
             .setColor([147, 181, 198])
             .setAuthor({name: "Available Commands"})
             .addFields(fields)
-        message.reply({embeds: [msg]})
+        message.reply({embeds: [msg]}).catch(err => { msgSendFailHandler(message, err) })
     },
     aliases: ["help", "commands"],
     desc: "Display all commands available for Rankbot."

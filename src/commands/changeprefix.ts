@@ -1,6 +1,7 @@
 import { createClient } from "redis"
 import { Command } from "../types"
 import { redisUrl } from "../config"
+import { msgSendFailHandler } from "../utils/discord"
 
 const command : Command = {
     name: "changeprefix",
@@ -11,19 +12,19 @@ const command : Command = {
         }
 
         if (!(message.member?.permissions.has("Administrator") || message.member?.permissions.has("ManageGuild"))){
-            message.reply("You don't have enough permission. Contact server administrator.")
+            message.reply("You don't have enough permission. Contact server administrator.").catch(err => { msgSendFailHandler(message, err) })
             return
         }
 
         if (args.length !== 1){
-            message.reply("Too many or too few argument(s). Required `1`")
+            message.reply("Too many or too few argument(s). Required `1`").catch(err => { msgSendFailHandler(message, err) })
             return
         }
 
         const newPrefix = args[0]
 
         if (newPrefix.length > 10){
-            message.reply("Prefix too long!")
+            message.reply("Prefix too long!").catch(err => { msgSendFailHandler(message, err) })
             return
         }
 
@@ -34,10 +35,10 @@ const command : Command = {
         const res = await redis.set(message.guild.id, newPrefix)
         if (res === "OK"){
             const rep = "Prefix for `" + message.guild?.name + "` is now `" + newPrefix + "`"
-            message.reply(rep)        
+            message.reply(rep).catch(err => { msgSendFailHandler(message, err) })
         }
         else {
-            message.reply("Prefix changing might failed. If the prefix doesn't work, try using default prefix.")
+            message.reply("Prefix changing might failed. If the prefix doesn't work, try using default prefix.").catch(err => { msgSendFailHandler(message, err) })
         }
 
         await redis.disconnect()

@@ -1,4 +1,4 @@
-import { ChannelType, Events, Guild } from "discord.js"
+import { ChannelType, Events, Guild, PermissionFlagsBits } from "discord.js"
 import { guildJoinLogger } from "../utils/logging"
 import { BotEvent } from "../types"
 import { prefix } from "../config"
@@ -28,18 +28,32 @@ const event: BotEvent = {
         ]
       }
       if (guild.systemChannel){
+        console.log(guild.systemChannel.name)
         guild.systemChannel.send(welcomeMessage).catch((err) => {
-          console.error(`[Err] Error while sending message to system channel in the guild "${guild.name}" (${guild.id}).`)
+          const now = new Date()
+          console.error(`[${now.toISOString()}][Err] Error while sending message to system channel in the guild "${guild.name}" (${guild.id}).`)
+          guild.channels.cache.some((c) => {
+            if (!guild.members.me) return false
+            if (c.type === ChannelType.GuildText && c.permissionsFor(guild.members.me).has(PermissionFlagsBits.SendMessages)){
+              c.send(welcomeMessage).catch((err) => {
+                const now = new Date()
+                console.error(`[${now.toISOString()}][Err] Error while sending message to #${c.name} in the guild "${guild.name}" (${guild.id}).`)
+              })
+              return true
+            }
+          })
         })
       }
       else {
         guild.channels.cache.some((c) => {
-            if (c.type === ChannelType.GuildText){
-              c.send(welcomeMessage).catch((err) => {
-                console.error(`[Err] Error while sending message to #${c.name} in the guild "${guild.name}" (${guild.id}).`)
-              })
-              return true
-            }
+          if (!guild.members.me) return false
+          if (c.type === ChannelType.GuildText && c.permissionsFor(guild.members.me).has(PermissionFlagsBits.SendMessages)){
+            c.send(welcomeMessage).catch((err) => {
+              const now = new Date()
+              console.error(`[${now.toISOString()}][Err] Error while sending message to #${c.name} in the guild "${guild.name}" (${guild.id}).`)
+            })
+            return true
+          }
         })
       }
     }

@@ -13,32 +13,31 @@ const ApexRankInter = {
         const platform = interaction.options.getString('platform') as string
         const handle = interaction.options.getString('handle') as string
         try{
-            apexrankMessage(handle, platform).then(res => {
-                if (!res.completed){
-                    if (res.message){
-                        interaction.editReply(res.message)
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
-                    return
+            const res = await apexrankMessage(handle, platform)
+            if (!res.completed){
+                if (res.message){
+                    await interaction.editReply(res.message)
                 }
                 else {
-                    if (res.embed){
-                        interaction.editReply({embeds: [res.embed]})
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
+                    await interaction.editReply("Message Error!")
                 }
-            })
+                return
+            }
+            else {
+                if (res.embed){
+                    await interaction.editReply({embeds: [res.embed]})
+                }
+                else {
+                    await interaction.editReply("Message Error!")
+                }
+            }
         }
         catch{
             try{
-                interaction.reply("Error.")
+                await interaction.reply("Error.")
             }
             catch {
-                interaction.editReply("Error.")
+                await interaction.editReply("Error.")
             }
         }  
     }

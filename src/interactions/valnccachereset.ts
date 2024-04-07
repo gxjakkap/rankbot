@@ -1,5 +1,6 @@
 import { CacheType, ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import { valnccacheresetMessage } from "../messages/valnccachereset"
+import { msgSendFailHandler } from "../utils/discord"
 
 const ValNccacheResetInter = {
     data: new SlashCommandBuilder()
@@ -10,32 +11,31 @@ const ValNccacheResetInter = {
     async execute(interaction: ChatInputCommandInteraction<CacheType>) {
         await interaction.deferReply()
         try{
-            valnccacheresetMessage(interaction.options.getString('name') as string, interaction.options.getString('tag') as string).then(res => {
-                if (!res.completed){
-                    if (res.message){
-                        interaction.editReply(res.message)
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
-                    return
+            const res = await valnccacheresetMessage(interaction.options.getString('name') as string, interaction.options.getString('tag') as string)
+            if (!res.completed){
+                if (res.message){
+                    await interaction.editReply(res.message)
                 }
                 else {
-                    if (res.embed){
-                        interaction.editReply({embeds: [res.embed]})
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
+                    await interaction.editReply("Message Error!")
                 }
-            })
+                return
+            }
+            else {
+                if (res.embed){
+                    await interaction.editReply({embeds: [res.embed]})
+                }
+                else {
+                    await interaction.editReply("Message Error!")
+                }
+            }
         }
         catch{
             try{
-                interaction.reply("Error.")
+                await interaction.reply("Error.")
             }
             catch {
-                interaction.editReply("Error.")
+                await interaction.editReply("Error.")
             }
         }  
     }

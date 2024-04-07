@@ -1,6 +1,7 @@
 import { valLdbMessage } from "../messages/valldbres"
 import { processRiotTags } from "../utils/val"
 import { Command } from "../types"
+import { msgSendFailHandler } from "../utils/discord"
 
 const command : Command = {
     name: "valldb",
@@ -16,19 +17,19 @@ const command : Command = {
         valLdbMessage(riotTag.name, riotTag.tag, region).then(res => {
             if (!res.completed){
                 if (res.message){
-                    message.reply(res.message)
+                    message.reply(res.message).catch(err => { msgSendFailHandler(message, err) })
                 }
                 else {
-                    message.reply("Message Error!")
+                    message.reply("Message Error!").catch(err => { msgSendFailHandler(message, err) })
                 }
                 return
             }
             else {
                 if (res.embed){
-                    message.reply({embeds: [res.embed]})
+                    message.reply({embeds: [res.embed]}).catch(err => { msgSendFailHandler(message, err) })
                 }
                 else {
-                    message.reply("Message Error!")
+                    message.reply("Message Error!").catch(err => { msgSendFailHandler(message, err) })
                 }
             }
         })

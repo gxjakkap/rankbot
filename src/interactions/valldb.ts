@@ -12,32 +12,31 @@ const ValLdbInter = {
     async execute(interaction: ChatInputCommandInteraction<CacheType>) {
         await interaction.deferReply()
         try{
-            valLdbMessage(interaction.options.getString('name') as string, interaction.options.getString('tag') as string, interaction.options.getString('region') as string).then(res => {
-                if (!res.completed){
-                    if (res.message){
-                        interaction.editReply(res.message)
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
-                    return
+            const res = await valLdbMessage(interaction.options.getString('name') as string, interaction.options.getString('tag') as string, interaction.options.getString('region') as string)
+            if (!res.completed){
+                if (res.message){
+                    await interaction.editReply(res.message)
                 }
                 else {
-                    if (res.embed){
-                        interaction.editReply({embeds: [res.embed]})
-                    }
-                    else {
-                        interaction.editReply("Message Error!")
-                    }
+                    await interaction.editReply("Message Error!")
                 }
-            })
+                return
+            }
+            else {
+                if (res.embed){
+                    await interaction.editReply({embeds: [res.embed]})
+                }
+                else {
+                    await interaction.editReply("Message Error!")
+                }
+            }
         }
         catch{
             try{
-                interaction.reply("Error.")
+                await interaction.reply("Error.")
             }
             catch {
-                interaction.editReply("Error.")
+                await interaction.editReply("Error.")
             }
         }  
     }

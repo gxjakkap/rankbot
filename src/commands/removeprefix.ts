@@ -1,6 +1,7 @@
 import { createClient } from "redis"
 import { Command } from "../types"
 import { redisUrl, prefix } from "../config"
+import { msgSendFailHandler } from "../utils/discord"
 
 const command : Command = {
     name: "removeprefix",
@@ -11,12 +12,12 @@ const command : Command = {
         }
 
         if (!(message.member?.permissions.has("Administrator") || message.member?.permissions.has("ManageGuild"))){
-            message.reply("You don't have enough permission. Contact server administrator.")
+            message.reply("You don't have enough permission. Contact server administrator.").catch(err => { msgSendFailHandler(message, err) })
             return
         }
 
         if (args.length > 0){
-            message.reply("Too many argument(s). Required `none`")
+            message.reply("Too many argument(s). Required `none`").catch(err => { msgSendFailHandler(message, err) })
             return
         }
 
@@ -27,10 +28,10 @@ const command : Command = {
         const res = await redis.del(message.guild.id)
         if (res === 1){
             const rep = "Prefix for `" + message.guild?.name + "` is now `" + prefix + "`"
-            message.reply(rep)        
+            message.reply(rep).catch(err => { msgSendFailHandler(message, err) })
         }
         else {
-            message.reply("Prefix changing might failed.")
+            message.reply("Prefix changing might failed.").catch(err => { msgSendFailHandler(message, err) })
         }
 
         await redis.disconnect()
