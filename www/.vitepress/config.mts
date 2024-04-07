@@ -11,12 +11,14 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/docs/getting-started' },
+      { text: 'Legal', link: '/legal' },
       { text: 'Privacy Policy', link: '/privacy-policy' },
       { text: 'Invite', link: 'https://guntxjakka.me/rankbot' }
     ],
 
     sidebar: [
-      { text: 'Privacy Policy', link: '/privacy-policy' }, 
+      { text: 'Privacy Policy', link: '/privacy-policy' },
+      { text: 'Legal', link: '/legal' }, 
       { text: 'General', items: [
         { text: 'Getting Started', link: '/docs/getting-started' }, 
         { text: 'Prefix', link: '/docs/prefix' }, 
