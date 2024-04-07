@@ -1,7 +1,9 @@
 import { ColorResolvable, EmbedBuilder } from "discord.js"
+import axios from "axios"
 import valAPI, { Regions } from "unofficial-valorant-api"
 
 import { valapitoken } from "../config"
+
 
 interface ValCacheresetRes {
     completed: boolean,
@@ -25,14 +27,23 @@ interface ValAPIAccountData {
     last_update_raw: number
 }
 
-const valAPIInstance = new valAPI() // FIXME: valAPI should take token as argument but doesn't
+//const valAPIInstance = new valAPI() // FIXME: valAPI should take token as argument but doesn't
 
 const hitPlayerDataEndpoint = async (playerName: string, tag: string) => {
-    const data = await valAPIInstance.getAccount({
+    /* const data = await valAPIInstance.getAccount({
         name: playerName,
         tag: tag
-    })
-    return data
+    }) */
+    const res = await axios.get(
+        `https://api.henrikdev.xyz/valorant/v1/account/${playerName}/${tag}`, 
+        { 
+            headers: { 
+                Authorization: valapitoken, 
+                'User-Agent': 'Rankbot/3.0' 
+            } 
+        }
+    )
+    return res.data
 }
 
 export const valnccacheresetMessage = async (name: string, tag: string): Promise<ValCacheresetRes> => {

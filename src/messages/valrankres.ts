@@ -5,6 +5,7 @@ import { getValRankColor } from "../utils/color"
 import { getValRankImgLink } from "../utils/image"
 import { validregion } from "../utils/val"
 import { valapitoken } from "../config"
+import axios from "axios"
 
 interface ValRankData {
     currenttier: number,
@@ -29,16 +30,26 @@ interface ValRankRes {
     embed?: EmbedBuilder
 }
 
-const valAPIInstance = new valAPI() // FIXME: valAPI should take token as argument but doesn't
+//const valAPIInstance = new valAPI() // FIXME: valAPI should take token as argument but doesn't
 
 const getPlayerRank = async (playerName: string, tag: string, region: string) => {
-    const mmr = await valAPIInstance.getMMR({
+    /* const mmr = await valAPIInstance.getMMR({
         version: 'v1',
         region: region as Regions,
         name: playerName,
         tag: tag
     })
-    return mmr
+    return mmr */
+    const res = await axios.get(
+        `https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${playerName}/${tag}`, 
+        { 
+            headers: { 
+                Authorization: valapitoken, 
+                'User-Agent': 'Rankbot/3.0' 
+            } 
+        }
+    )
+    return res.data
 }
 
 export const valrankMessage = async (name: string, tag: string, region: string): Promise<ValRankRes> => {

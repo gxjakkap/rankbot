@@ -31,7 +31,15 @@ const statusValidator = (statusCode: number) => {
 }
 
 const getLeaderboardRank = async (playerName: string, tag: string, region: string) => {
-    const ldbpos = await axios({method: "GET", url: `https://api.henrikdev.xyz/valorant/v2/leaderboard/${region}?name=${playerName}&tag=${tag}`, validateStatus: statusValidator})
+    const ldbpos = await axios({
+        method: "GET", 
+        url: `https://api.henrikdev.xyz/valorant/v2/leaderboard/${region}?name=${playerName}&tag=${tag}`, 
+        validateStatus: statusValidator, 
+        headers: { 
+            Authorization: valapitoken, 
+            'User-Agent': 'Rankbot/3.0' 
+        }
+    })
     return ldbpos.data
 }
 
