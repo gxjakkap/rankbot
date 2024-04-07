@@ -1,4 +1,8 @@
 config.json
+**/config.ts
+
+www/.vitepress/dist
+www/.vitepress/cache
 
 # Logs
 logs
