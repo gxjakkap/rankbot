@@ -7,6 +7,7 @@ https://guntxjakka.me/rankbot
 
 
 ## Requirements
+
 1. Node.js v18 LTS
 
 ## Commands
@@ -15,13 +16,11 @@ See [docs](https://rankbot.guntxjakka.me/docs/getting-started).
 
 ## Legal
 
-Rankbot was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games.  Riot Games does not endorse or sponsor this project.
-
-After commit [b16469c](https://github.com/gxjakkap/rankbot/commit/b16469c964dbd5a2a751ef535b972b9fe49358a5), Rankbot's now complying to Riot's Legal Jibber Jabber. 
+See [legal](https://rankbot.guntxjakka.me/legal).
 
 
 ## License
 
 [MIT License](https://github.com/gxjakkap/rankbot/blob/main/LICENSE)
 
-*this license only applies to Rankbot v2.x . Version of Rankbot earlier than v2.0.0 is licensed under [GNU General Public License V3](https://github.com/gxjakkap/rankbot/blob/c0bbaba0d56956a689faf4af91b2b1b33ea02213/LICENSE)*
+*this license only applies to Rankbot v2.x onwards. Version of Rankbot earlier than v2.0.0 is licensed under [GNU General Public License V3](https://github.com/gxjakkap/rankbot/blob/c0bbaba0d56956a689faf4af91b2b1b33ea02213/LICENSE)*
