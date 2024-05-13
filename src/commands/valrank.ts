@@ -1,7 +1,7 @@
 import { valrankMessage } from "../messages/valrankres"
 import { processRiotTags } from "../utils/val"
 import { msgSendFailHandler } from "../utils/discord"
-import { Command } from "../types"
+import { Command } from "../types/types"
 
 const command : Command = {
     name: "valrank",

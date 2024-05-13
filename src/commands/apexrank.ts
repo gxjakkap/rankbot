@@ -1,5 +1,5 @@
 import { apexrankMessage } from "../messages/apexrankres"
-import { Command } from "../types"
+import { Command } from "../types/types"
 import { msgSendFailHandler } from "../utils/discord"
 
 const command : Command = {

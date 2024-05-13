@@ -2,7 +2,7 @@ import { ChannelType, Events, Guild } from "discord.js"
 import { createClient } from "redis"
 
 import { guildLeaveLogger } from "../utils/logging"
-import { BotEvent } from "../types"
+import { BotEvent } from "../types/types"
 import { redisUrl } from "../config"
 
 const event: BotEvent = {

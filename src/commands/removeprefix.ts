@@ -1,5 +1,5 @@
 import { createClient } from "redis"
-import { Command } from "../types"
+import { Command } from "../types/types"
 import { redisUrl, prefix } from "../config"
 import { msgSendFailHandler } from "../utils/discord"
 

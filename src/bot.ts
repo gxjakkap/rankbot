@@ -1,11 +1,12 @@
 import { Client, GatewayIntentBits, Collection, SlashCommandBuilder, Routes } from "discord.js"
 import { REST } from "@discordjs/rest"
-import { createClient } from "redis"
+import Git from 'nodegit'
+import http from 'http'
 import { readdirSync } from "fs"
 import { join } from "path"
 
-import { BotEvent, Command, SlashCommand } from "./types"
-import { token, clientId, redisUrl } from "./config"
+import { BotEvent, Command, SlashCommand } from "./types/types"
+import { token, clientId } from "./config"
 
 const client = new Client({
 	intents: [
@@ -38,7 +39,7 @@ readdirSync(commandsDirectory).forEach(file => {
 //load interactions
 const interactions: SlashCommandBuilder[] = []
 const interactionsDirectory = join(__dirname, "interactions")
-readdirSync(interactionsDirectory).forEach(file => {
+readdirSync(interactionsDirectory).filter(filename => filename.endsWith('.ts')).forEach(file => {
 	const command = require(`${interactionsDirectory}/${file}`).default
     interactions.push(command.data.toJSON())
     client.interactions.set(command.data.name, command)
@@ -78,5 +79,23 @@ readdirSync(eventsDirectory).forEach(file => {
 		console.error(`Error while loading event '${event.name}. (type missing)'`)
 	}
 })
+
+http.createServer(async(req, res) => {
+	if (req.url == '/check') {
+		const repo = await Git.Repository.open('.')
+        const commit = await repo.getHeadCommit()
+		res.writeHead(200, { 'Content-Type': 'application/json' })
+		res.end(JSON.stringify({
+			'status': 200,
+			'commit': commit.sha(),
+			'commit_msg': commit.message(),
+			'self': client.user?.tag,
+			'avatar': client.user?.avatarURL()
+		}))
+	  } else {
+		res.writeHead(301, { 'Location': 'https://rankbot.guntxjakka.me/' })
+		res.end()
+	  }
+}).listen(3037)
 
 client.login(token)

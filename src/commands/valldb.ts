@@ -1,6 +1,6 @@
 import { valLdbMessage } from "../messages/valldbres"
 import { processRiotTags } from "../utils/val"
-import { Command } from "../types"
+import { Command } from "../types/types"
 import { msgSendFailHandler } from "../utils/discord"
 
 const command : Command = {

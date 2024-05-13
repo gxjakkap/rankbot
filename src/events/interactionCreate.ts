@@ -1,5 +1,5 @@
 import { Events, Interaction } from "discord.js"
-import { BotEvent } from "../types"
+import { BotEvent } from "../types/types"
 import { commandLogger, unpackOptions } from "../utils/logging"
 
 const event : BotEvent = {

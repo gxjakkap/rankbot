@@ -1,4 +1,4 @@
 {
     "cleanUrls": true,
-    "ignoreCommand": "git diff HEAD^ HEAD --quiet ./www/"
+    "ignoreCommand": "git diff HEAD^ HEAD --quiet ./www/ ./api/"
 }

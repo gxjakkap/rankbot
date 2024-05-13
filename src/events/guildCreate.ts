@@ -1,6 +1,6 @@
 import { ChannelType, Events, Guild, PermissionFlagsBits } from "discord.js"
 import { guildJoinLogger } from "../utils/logging"
-import { BotEvent } from "../types"
+import { BotEvent } from "../types/types"
 import { prefix } from "../config"
 
 const event: BotEvent = {

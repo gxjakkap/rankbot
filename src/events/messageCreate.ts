@@ -1,6 +1,6 @@
 import { Events, Message, MessageType } from "discord.js"
 import { commandLogger } from "../utils/logging"
-import { BotEvent } from "../types"
+import { BotEvent } from "../types/types"
 import { createClient } from "redis"
 
 import * as config from "../config"

@@ -2,7 +2,7 @@ import { EmbedBuilder } from "discord.js"
 import { readdirSync } from "fs"
 import { join } from "path"
 import { prefix } from "../config"
-import { Command } from "../types"
+import { Command } from "../types/types"
 import { msgSendFailHandler } from "../utils/discord"
 
 const commands = readdirSync(__dirname).filter(file => file.endsWith(".ts"))
