@@ -1,57 +1,72 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import axios from 'axios'
 
+const statusValidator = (statusCode: number) => {
+  //wip better status code handler
+  return true
+}
+
 const sendWebhook = async (checkFailed: boolean, tag: string, img: string, hash?: string, commitMsg?: string) => {
   const bt = "`"
   const now = new Date()
 
   if (checkFailed){
-    await axios.post(process.env.DISCORD_ALERT_WEBHOOK || "", {
-      "embeds": [
-        {
-          "color": 15549239,
-          "fields": [
-            {
-              "name": "",
-              "value": "`Rankbot` failed welfare check! Bot might be down."
-            },
-            {
-              "name": "Time",
-              "value": now.toISOString()
+    await axios({
+      method: "POST", 
+      url: `${process.env.DISCORD_ALERT_WEBHOOK}`, 
+      validateStatus: statusValidator, 
+      data: {
+        "embeds": [
+          {
+            "color": 15549239,
+            "fields": [
+              {
+                "name": "",
+                "value": "`Rankbot` failed welfare check! Bot might be down."
+              },
+              {
+                "name": "Time",
+                "value": now.toISOString()
+              }
+            ],
+            "author": {
+              "name": "Rankbot",
+              "icon_url": "https://i.stack.imgur.com/frlIf.png"
             }
-          ],
-          "author": {
-            "name": "Rankbot",
-            "icon_url": "https://i.stack.imgur.com/frlIf.png"
           }
-        }
-      ],
+        ],
+      }
     })
   }
   else {
-    await axios.post(process.env.DISCORD_CHECK_WEBHOOK || "", {
-      embeds: [
+    await axios({
+      method: "POST", 
+      url: `${process.env.DISCORD_ALERT_WEBHOOK}`, 
+      validateStatus: statusValidator, 
+      data: {
+        embeds: [
           {
-              author: {
-                  name: tag,
-                  icon_url: img || "https://i.stack.imgur.com/frlIf.png"
-              },
-              fields: [
-                  {
-                      name: "",
-                      value: `${bt}${tag}${bt} passed welfare check.`
-                  },
-                  {
-                      name: "Time",
-                      value: now.toISOString()
-                  },
-                  {
-                      name: "Commit",
-                      value: `${bt}${hash?.substring(0, 8)}${bt}: ${commitMsg}`
-                  }
-              ]
+            author: {
+                name: tag,
+                icon_url: img || "https://i.stack.imgur.com/frlIf.png"
+            },
+            fields: [
+                {
+                    name: "",
+                    value: `${bt}${tag}${bt} passed welfare check.`
+                },
+                {
+                    name: "Time",
+                    value: now.toISOString()
+                },
+                {
+                    name: "Commit",
+                    value: `${bt}${hash?.substring(0, 8)}${bt}: ${commitMsg}`
+                }
+            ]
           }
-      ]
+        ]
+      }
     })
   }
 }
