@@ -74,7 +74,7 @@ const sendWebhook = async (checkFailed: boolean, tag: string, img: string, hash?
 export default async function (request: VercelRequest, response: VercelResponse) {
   try {
     console.log(process.env.CHECK_URL)
-    const res = await axios.get(process.env.CHECK_URL || "")
+    const res = await axios({ method: "GET", url: process.env.CHECK_URL || "", validateStatus: statusValidator })
     await sendWebhook(false, res.data['self'], res.data['avatar'], res.data['commit'], res.data['commit_msg'])
     response.status(200).json({
       status: 200,
