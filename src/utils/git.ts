@@ -36,8 +36,8 @@ const printCommitDiff = (diff: number[]) => {
     }
     else if (diff[0] < diff[1]){
         const x = diff[1] - diff[0]
-        console.log(`[DIFF] You're currently ${x} commit${(x > 1) ? "s" : ""} behind ${originBranch} \n`)
-        console.log(`[DIFF] Update via git using "git pull"`)
+        console.log(`[DIFF] You're currently ${x} commit${(x > 1) ? "s" : ""} behind ${originBranch}`)
+        console.log(`[DIFF] Update via git using "git pull" \n`)
     }
     else {
         console.log(`[DIFF] You're up to date with ${originBranch} \n`)
@@ -48,6 +48,7 @@ const printCommitDiff = (diff: number[]) => {
 export const checkCurrentRepoStatus = async (client: Client) => {
     const repo = await Git.Repository.open('.')
     const commit = await repo.getHeadCommit()
+    await repo.fetch('origin')
     const diff = await countCommits()
     console.log(`[READY] Ready! Logged in as ${client.user?.tag}`)
     console.log(`[READY] Running on commit: ${commit.sha()}`)
