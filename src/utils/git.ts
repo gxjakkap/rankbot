@@ -26,9 +26,6 @@ const countCommits = async () => {
   
     const leftCommits = await revWalkLeft.getCommitsUntil(() => true)
     const rightCommits = await revWalkRight.getCommitsUntil(() => true)
-  
-    console.log(`${leftCommits.length}\t${rightCommits.length}`)
-
     return [leftCommits.length, rightCommits.length]
 }
 
