@@ -27,7 +27,7 @@ client.aliases = new Collection<string, string>()
 const commandsDirectory = join(__dirname, "commands")
 readdirSync(commandsDirectory).forEach(file => {
 	const command: Command = require(join(commandsDirectory, file)).default
-	console.log(`Attempting to load command ${command.name}`)
+	console.log(`[INREG] Attempting to load command ${command.name}`)
 	if (command.aliases){
 		command.aliases.forEach(alias => {
 			client.aliases.set(alias, command.name)
@@ -49,13 +49,13 @@ readdirSync(interactionsDirectory).filter(filename => filename.endsWith('.ts')).
 const rest = new REST({ version: "10" }).setToken(token);
 (async () => {
 	try {
-		console.log(`Started refreshing ${interactions.length} application (/) commands.`);
+		console.log(`[INREG] Started refreshing ${interactions.length} application (/) commands.`);
 		await rest.put(
 			Routes.applicationCommands(clientId),
 			{ body: interactions },
 		)
 		
-		console.log(`Successfully reloaded ${interactions.length} application (/) commands.`);
+		console.log(`[INREG] Successfully reloaded ${interactions.length} application (/) commands.`);
 	} catch (error) {
 		console.error(error)
 	}
@@ -76,7 +76,7 @@ readdirSync(eventsDirectory).forEach(file => {
 		})
 	}
 	else {
-		console.error(`Error while loading event '${event.name}. (type missing)'`)
+		console.error(`[CMDREG] Error while loading event '${event.name}. (type missing)'`)
 	}
 })
 
@@ -84,6 +84,8 @@ http.createServer(async(req, res) => {
 	if (req.url == '/check') {
 		const repo = await Git.Repository.open('.')
         const commit = await repo.getHeadCommit()
+		const now = new Date()
+		console.log(`[WELFARE] ${now.toISOString()} ${commit.message()}`)
 		res.writeHead(200, { 'Content-Type': 'application/json' })
 		res.end(JSON.stringify({
 			'status': 200,

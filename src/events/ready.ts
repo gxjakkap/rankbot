@@ -1,8 +1,8 @@
 import { ActivityType, Client, Events } from "discord.js"
-import Git from 'nodegit'
 import axios from "axios"
 import { discordStatusWebhook } from "../config"
 import { BotEvent } from "../types/types"
+import { checkCurrentRepoStatus } from "../utils/git"
 
 const event : BotEvent = {
     name: Events.ClientReady,
@@ -12,15 +12,10 @@ const event : BotEvent = {
             activities: [{ name: "ranked game", type: ActivityType.Playing }],
             status: 'dnd'
         })
-        const repo = await Git.Repository.open('.')
-        const commit = await repo.getHeadCommit()
-        console.log(`Ready! Logged in as ${client.user?.tag}`)
-        console.log(`Running on commit: ${commit.sha()}`)
-        console.log(`Committer: ${commit.committer()}`)
-        console.log(`Commit Message: ${commit.message()}`)
-        console.log("Currently in these guilds:")
+        const commit = await checkCurrentRepoStatus(client)
+        console.log("[GUILD] Currently in these guilds:")
         client.guilds.cache.forEach(g => {
-            console.log(g.name)
+            console.log(`[GUILD] ${g.name}`)
         })
         if (discordStatusWebhook){
             const bt = "`"

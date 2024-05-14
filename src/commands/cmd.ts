@@ -15,9 +15,9 @@ for (const file of commands) {
         continue
     }
     const command: Command = require(join(__dirname, file)).default
+    console.log(`[CMREG] Loaded command ${command.name}`)
     commandCollections.push({name: command.name, desc: command.desc})
 }
-console.log(commandCollections)
 
 const command : Command = {
     name: "cmd",

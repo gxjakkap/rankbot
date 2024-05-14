@@ -8,7 +8,8 @@
     "dev": "tsx --watch .",
     "docs:dev": "vitepress dev www",
     "docs:build": "vitepress build www",
-    "docs:preview": "vitepress preview www"
+    "docs:preview": "vitepress preview www",
+    "docs:install": "pnpm install vitepress vitepress-plugin-auto-sidebar vue typescript @vercel/node"
   },
   "keywords": [],
   "author": "Jakkaphat Chalermphanaphan",
