@@ -45,15 +45,25 @@ const printCommitDiff = (diff: number[]) => {
 }
   
 
-export const checkCurrentRepoStatus = async (client: Client) => {
+export const checkCurrentRepoStatus = async () => {
     const repo = await Git.Repository.open('.')
     const commit = await repo.getHeadCommit()
     await repo.fetch('origin')
     const diff = await countCommits()
-    console.log(`[READY] Ready! Logged in as ${client.user?.tag}`)
     console.log(`[READY] Running on commit: ${commit.sha()}`)
     console.log(`[READY] Committer: ${commit.committer()}`)
     console.log(`[READY] Commit Message: ${commit.message()}`)
     printCommitDiff(diff)
     return commit
+}
+
+export const getCurrentVersion = async () => {
+    const repo = await Git.Repository.open('.')
+    const commit = await repo.getHeadCommit()
+    await repo.fetch('origin')
+    const diff = await countCommits()
+    return {
+        commit,
+        diff
+    }
 }

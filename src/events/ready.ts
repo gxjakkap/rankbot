@@ -12,7 +12,8 @@ const event : BotEvent = {
             activities: [{ name: "ranked game", type: ActivityType.Playing }],
             status: 'dnd'
         })
-        const commit = await checkCurrentRepoStatus(client)
+        console.log(`[READY] Ready! Logged in as ${client.user?.tag}`)
+        const commit = await checkCurrentRepoStatus()
         console.log("[GUILD] Currently in these guilds:")
         client.guilds.cache.forEach(g => {
             console.log(`[GUILD] ${g.name}`)
