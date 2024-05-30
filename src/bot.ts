@@ -85,7 +85,7 @@ http.createServer(async(req, res) => {
 		const repo = await Git.Repository.open('.')
         const commit = await repo.getHeadCommit()
 		const now = new Date()
-		console.log(`[WELFARE] ${now.toISOString()} ${commit.message()}`)
+		console.log(`[${now.toISOString()}][WELFARE] ${commit.message()}`)
 		res.writeHead(200, { 'Content-Type': 'application/json' })
 		res.end(JSON.stringify({
 			'status': 200,
