@@ -84,7 +84,6 @@ export const valrankMessage = async (name: string, tag: string, region: string):
 
     const rankPoint = data['ranking_in_tier'] || 0
     const rankName = data.currenttierpatched
-    const cdnUrl = getValRankImgLink(data.currenttier)
 
     //sometimes unranked player also return a null data with a 200 code. mostly from player that hasn't played ranked in a long time.
     if (!rankName){
@@ -107,6 +106,8 @@ export const valrankMessage = async (name: string, tag: string, region: string):
             embed: msg
         }
     }
+
+    const cdnUrl = getValRankImgLink(data.currenttier)
         
     const fields = [
         {name: "Name", value: `${data.name}#${data.tag}`},
