@@ -7,6 +7,7 @@ import { join } from "path"
 
 import { BotEvent, Command, SlashCommand } from "./types/types"
 import { token, clientId } from "./config"
+import { countCommits, printCommitDiff } from "./utils/git"
 
 const client = new Client({
 	intents: [
@@ -81,11 +82,14 @@ readdirSync(eventsDirectory).forEach(file => {
 })
 
 http.createServer(async(req, res) => {
-	if (req.url == '/check') {
+	if (req.url === '/check' && req.method === 'GET') {
 		const repo = await Git.Repository.open('.')
         const commit = await repo.getHeadCommit()
+		const diff = await countCommits()
 		const now = new Date()
-		console.log(`[${now.toISOString()}][WELFARE] ${commit.message()}`)
+		console.log(`[${now.toISOString()}][WELFARE] ${commit.message().trimEnd()}`)
+		printCommitDiff(diff, true)
+		console.log(diff)
 		res.writeHead(200, { 'Content-Type': 'application/json' })
 		res.end(JSON.stringify({
 			'status': 200,

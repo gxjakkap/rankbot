@@ -3,7 +3,7 @@ import Git from 'nodegit'
 
 const originBranch = 'origin/main'
 
-const countCommits = async () => {
+export const countCommits = async () => {
     const repo = await Git.Repository.open('.')
   
     const [branch1Commit, branch2Commit] = await Promise.all([
@@ -29,18 +29,19 @@ const countCommits = async () => {
     return [leftCommits.length, rightCommits.length]
 }
 
-const printCommitDiff = (diff: number[]) => {
+export const printCommitDiff = (diff: number[], addTimeStamp: boolean) => {
+    const now = new Date()
     if (diff[0] > diff[1]){
         const x = diff[0] - diff[1]
-        console.log(`[DIFF] You're currently ${x} commit${(x > 1) ? "s" : ""} ahead of ${originBranch} \n`)
+        console.log(`${addTimeStamp ? `[${now.toISOString()}]` : ""}[DIFF] You're currently ${x} commit${(x > 1) ? "s" : ""} ahead of ${originBranch} \n`)
     }
     else if (diff[0] < diff[1]){
         const x = diff[1] - diff[0]
-        console.log(`[DIFF] You're currently ${x} commit${(x > 1) ? "s" : ""} behind ${originBranch}`)
-        console.log(`[DIFF] Update via git using "git pull" \n`)
+        console.log(`${addTimeStamp ? `[${now.toISOString()}]` : ""}[DIFF] You're currently ${x} commit${(x > 1) ? "s" : ""} behind ${originBranch}`)
+        console.log(`${addTimeStamp ? `[${now.toISOString()}]` : ""}[DIFF] Update via git using "git pull" \n`)
     }
     else {
-        console.log(`[DIFF] You're up to date with ${originBranch} \n`)
+        console.log(`${addTimeStamp ? `[${now.toISOString()}]` : ""}[DIFF] You're up to date with ${originBranch} \n`)
     }
 }
   
@@ -53,7 +54,7 @@ export const checkCurrentRepoStatus = async () => {
     console.log(`[READY] Running on commit: ${commit.sha()}`)
     console.log(`[READY] Committer: ${commit.committer()}`)
     console.log(`[READY] Commit Message: ${commit.message()}`)
-    printCommitDiff(diff)
+    printCommitDiff(diff, false)
     return commit
 }
 
