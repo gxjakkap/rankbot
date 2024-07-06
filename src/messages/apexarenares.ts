@@ -12,8 +12,13 @@ interface ApexArenaRes {
     embed?: EmbedBuilder
 }
 
+const statusValidator = (statusCode: number) => {
+    //wip better status code handler
+    return true
+}
+
 const getPlayerRank = async (playerName: string, platform: string) => {
-    const requests = await axios.get(`https://api.mozambiquehe.re/bridge?player=${playerName}&platform=${platform}`, {headers: {"Authorization": apexapitoken, "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}})
+    const requests = await axios.get(`https://api.mozambiquehe.re/bridge?player=${playerName}&platform=${platform}`, {headers: {"Authorization": apexapitoken, "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}, validateStatus: statusValidator})
     return requests
 }
 

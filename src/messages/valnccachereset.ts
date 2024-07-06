@@ -29,6 +29,11 @@ interface ValAPIAccountData {
 
 //const valAPIInstance = new valAPI() // FIXME: valAPI should take token as argument but doesn't
 
+const statusValidator = (statusCode: number) => {
+    //wip better status code handler
+    return true
+}
+
 const hitPlayerDataEndpoint = async (playerName: string, tag: string) => {
     /* const data = await valAPIInstance.getAccount({
         name: playerName,
@@ -40,7 +45,8 @@ const hitPlayerDataEndpoint = async (playerName: string, tag: string) => {
             headers: { 
                 Authorization: valapitoken, 
                 'User-Agent': 'Rankbot/3.0' 
-            } 
+            },
+            validateStatus: statusValidator
         }
     )
     return res.data
