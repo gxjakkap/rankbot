@@ -19,6 +19,8 @@ export const processRiotTags = (input: string[]) => {
         return null
     }
 
+    rtagArr[0] = rtagArr[0].replace(",", " ")
+
     return {"name": rtagArr[0], "tag": rtagArr[1]}
 }
 
