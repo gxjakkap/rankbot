@@ -18,11 +18,14 @@ const event: BotEvent = {
 
         const redis = await createClient({
             url: config.redisUrl
-        }).connect()
-        
-        const prefix = await redis.get(message.guild.id) || defaultPrefix
+        }).connect().catch((e) => console.error(e))
 
-        await redis.disconnect()
+        let prefix = defaultPrefix
+        
+        if (redis) {
+            prefix = await redis.get(message.guild.id) || defaultPrefix
+            await redis.disconnect()
+        }
 
         if (message.mentions.has(message.client.user.id) && (message.type !== MessageType.Reply)) {
             message.reply(`My prefix${(prefix === defaultPrefix) ? '' : 'here'} is "${prefix}". Try running ${prefix}help for a list of command.`)
