@@ -67,3 +67,18 @@ export const valRegionOptions = [
 ]
 
 export const validregion = ["ap", "br", "eu", "kr", "latam", "na"]
+
+export const isError = (data: {[index: string] : any}) => {
+    if (data['errors']){
+        return {
+            err: true,
+            code: data['errors'][0]['status'] as number || null,
+            msg: data['errors'][0]['message'] || null
+        }
+    }
+    return {
+        err: false,
+        code: null,
+        msg: null
+    }
+}

@@ -3,7 +3,7 @@ import valAPI, { Regions } from "unofficial-valorant-api"
 
 import { getValRankColor } from "../utils/color"
 import { getValRankImgLink } from "../utils/image"
-import { validregion } from "../utils/val"
+import { isError, validregion } from "../utils/val"
 import { valapitoken } from "../config"
 import axios from "axios"
 
@@ -32,6 +32,11 @@ interface ValRankRes {
 
 //const valAPIInstance = new valAPI() // FIXME: valAPI should take token as argument but doesn't
 
+const statusValidator = (statusCode: number) => {
+    //wip better status code handler
+    return true
+}
+
 const getPlayerRank = async (playerName: string, tag: string, region: string) => {
     /* const mmr = await valAPIInstance.getMMR({
         version: 'v1',
@@ -40,15 +45,15 @@ const getPlayerRank = async (playerName: string, tag: string, region: string) =>
         tag: tag
     })
     return mmr */
-    const res = await axios.get(
-        `https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${playerName}/${tag}`, 
-        { 
-            headers: { 
-                Authorization: valapitoken, 
-                'User-Agent': 'Rankbot/3.0' 
-            } 
-        }
-    )
+    const res = await axios({
+        method: "GET", 
+        url: `https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${playerName}/${tag}`, 
+        validateStatus: statusValidator, 
+        headers: { 
+            Authorization: valapitoken, 
+            'User-Agent': 'Rankbot/3.0' 
+        } 
+    })
     return res.data
 }
 
@@ -64,21 +69,33 @@ export const valrankMessage = async (name: string, tag: string, region: string):
 
     const res = await getPlayerRank(name, tag, region)
 
+    const isErr = isError(res)
+
+    if (isErr.err){
+        //404 response: for player that doesn't exist and unranked player that has never played rank.
+        if (isErr.code === 404){
+            return {
+                completed: false,
+                message: `Data not found. Either ${name}#${tag} is **unranked** or simply doesn't exist.`
+            }
+        }
+        else if (isErr.msg){
+            return {
+                completed: false,
+                message: `${isErr.msg}`
+            }
+        }
+        else {
+            return {
+                completed: false,
+                message: `Unknown Error`
+            }
+        }
+    }
+
     console.log(res)
 
     let namef = name
-
-    //404 response: for player that doesn't exist and unranked player that has never played rank.
-    if (!res.data || res.status===404){
-        console.log(typeof name)
-        if (Array.isArray(name)){
-            namef = name.replace(',', ' ')
-        }
-        return {
-            completed: false,
-            message: `Data not found. Either ${namef}#${tag} is **unranked** or simply doesn't exist.`
-        }
-    }
 
     const data = (res.data as ValRankData)
 
